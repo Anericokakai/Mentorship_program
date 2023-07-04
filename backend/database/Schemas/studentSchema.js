@@ -15,6 +15,10 @@ const studentSchema = new Schema(
         type:String,
         default:'student'
     },
+    hasMentor:{
+      type:Boolean,
+      default:false
+    }
   },
   {
     collection: "students",

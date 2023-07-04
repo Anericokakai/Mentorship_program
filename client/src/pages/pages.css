@@ -1,0 +1,117 @@
+/* ! colors */
+:root{
+    --light_green:#38b000;
+    --darkGreen:#008000a8;
+    --darkBlue:#293241;
+    --lightOrange:#ee6c4d;
+    --lightWhite:#e0fbfc;
+    --lightBlue:#98c1d9;
+    --secondDarkBlue:#3d5a80;
+    --bg:#f1f5f8;
+    --clearWhite:#ffff;
+    --txtOne:#edf6f9;
+    --boldDarkText:#1a659e;
+    --boxshadow:rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+
+}
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nova+Mono&family=Poppins:wght@500;600;700&display=swap');
+
+
+/* ! signup page */
+.signupcontainer{
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bg);
+    display: grid;
+
+}
+.singupForm{
+    background-color: var(--bg);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+}
+.singupForm h1{
+    text-align: center;
+    color: var(--boldDarkText);
+}
+.inputs{
+   
+    padding: 1em ;
+}
+.inputs input{
+    padding: 1em ;
+    border-radius: 5px;
+    border: none;
+    box-shadow: var(--boxshadow);
+
+}
+.btnsign{
+    color: var(--lightWhite);
+    background-color: var(--boldDarkText);
+    padding: 10px 3em;
+   width: 100%;
+   border-radius: 100vw;
+   border: none;
+   
+}
+.signdetails{
+    background-color: var(--lightBlue);
+    color: var(--txtOne);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.5em;
+    gap: 2em;
+    padding: 1em;
+    transition: all 1s;
+}
+.signdetails h2{
+    font-size: 2em;
+    letter-spacing: 3px;
+line-height: 1em;
+
+}
+/* ! general buttons */
+.btn{
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.signupsbtn{
+    background: none;
+    border-radius: 50vw;
+    padding: 10px 4em;
+    border: 2px solid var(--txtOne);
+transition: .3s ease-in-out;
+
+color: var(--clearWhite);
+}
+.signupsbtn:hover{
+    color: var(--darkBlue);
+    background-color: var(--txtOne);
+}
+@media (max-width:640px) {
+    .signupcontainer{
+   grid-template-rows: 2fr 1fr;
+    }
+    
+}
+
+@media (min-width:640px) {
+    .signupcontainer{
+        grid-template-columns: 2fr 1fr;
+    }
+    
+}
