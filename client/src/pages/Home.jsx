@@ -4,7 +4,7 @@ import Naviagtion from "../components/Naviagtion";
 import gif1 from "../images/gif1.png";
 import "./pages.css";
 import { useSelector, UseSelector } from "react-redux/es/hooks/useSelector";
-import { Fechprefernces, fetchstudentInfo } from "./helpers/homeFetchFunctions";
+import { assignMentor_helper, Fechprefernces, fetchstudentInfo } from "./helpers/homeFetchFunctions";
 import { useEffect } from "react";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
@@ -15,7 +15,7 @@ function Home() {
   const [prerence, setpreferences] = useState([{}]);
   const [showpop, setshowpop] = useState(false);
   const [selectedPref, setSelectedPref] = useState("");
-  const [showcart,setshowcat]=useState(false)
+  const [showcart, setshowcat] = useState(false);
   // ! acces redux
   const { id } = useSelector((store) => store.userInfo);
   useEffect(() => {
@@ -37,6 +37,16 @@ function Home() {
       });
   }, []);
 
+  // !find a mentor for the studdent
+  const AssignMentor = () => {
+    assignMentor_helper(id).then(data=>{
+      toast.success(data.data.message)
+    }).catch(error=>{
+      toast.error('failed to connect to the server')
+    })
+  };
+
+  // !add to cart the selected prefrence
   const addtocart = (pref) => {
     setshowpop(true);
     setSelectedPref(pref);
@@ -94,14 +104,15 @@ function Home() {
               ))}
 
             <div className="cartIcon">
-            <div className={`cartContainer ${showcart && 'showcart'}`}>
-          <Cart carthide={setshowcat}></Cart>
-          </div>
-              <i class="fa-solid fa-cart-shopping" onClick={()=>setshowcat(true)}></i>
+              <div className={`cartContainer ${showcart && "showcart"}`}>
+                <Cart carthide={setshowcat}></Cart>
+              </div>
+              <i
+                class="fa-solid fa-cart-shopping"
+                onClick={() => setshowcat(true)}
+              ></i>
             </div>
           </div>
-   
-          
         </div>
       ) : (
         <div>
@@ -116,6 +127,18 @@ function Home() {
                 </div>
               ))}
           </div>
+        </div>
+      )}
+      {student && !student.hasMentor && (
+        <div className="requstMentor">
+          <h4>It Seems that you dont have a mentor yet </h4>
+          <p>
+            click here to check if there are mentors with the same preferences
+            as yours
+          </p>
+          <button onClick={AssignMentor} className="btn click">
+            Find Mentor
+          </button>
         </div>
       )}
 

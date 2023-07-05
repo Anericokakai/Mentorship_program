@@ -13,7 +13,7 @@ function Naviagtion() {
       setshow(false);
     }
   };
-  console.log(show)
+
   const CustomLink = (props) => {
     return (
       <NavLink

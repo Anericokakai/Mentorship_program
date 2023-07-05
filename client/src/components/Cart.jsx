@@ -1,16 +1,36 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCat } from "../toolkit/slices";
+import { toast } from "react-toastify";
+import { newPrefrences } from "../pages/helpers/homeFetchFunctions";
+import { clearCat, removeFromCat } from "../toolkit/slices";
 
 function Cart({ carthide }) {
-  const { prefs } = useSelector((store) => store.userInfo);
-  console.log(prefs);
+  const { prefs ,id} = useSelector((store) => store.userInfo);
+
   const dispatch = useDispatch();
 
-  console.log(prefs);
+  
 
   //   ! submit the prefernces
   const sendToBackEnd = () => {
+    const values={
+      id:id,
+      preference:prefs
+      
+    }
+    carthide(false)
+    newPrefrences(values).then(data=>{
+      dispatch(clearCat())
+      console.log(data)
+      if(data.data.error){
+        toast.error(data.data.message)
+      }else{
+        toast.success(data.data.message)
+        setTimeout(window.location.reload(),5000)
+      }
+    }).catch(error=>{
+      toast.error('failed to acces the database')
+    })
 
     
   };

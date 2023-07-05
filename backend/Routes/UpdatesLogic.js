@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { studentDb_collection } from "../database/Schemas/studentSchema.js";
 import { map_unmathedStudents } from "../helpers/algorithmsFunctions/unmarchedAlgo.js";
-import { update_prefence_forStudent } from "../helpers/Registrationhelpers.js";
+import { Add_preference_route_helper, FindStudentAmentor_helper_function, update_prefence_forStudent } from "../helpers/Registrationhelpers.js";
 export const update_student_with_no_mentors=Router()
 
 update_student_with_no_mentors.post('/api/updatestudentwithnomentors',(req,res)=>{
@@ -28,3 +28,23 @@ update_student_with_no_mentors.post('/api/updatestudentwithnomentors',(req,res)=
    if(!student)return res.json({error:true,message:'failed to feth data'})
     res.json({studentInfo:student})
  })
+
+
+
+ // !Add user prefrences that he or she wants
+export const Add_Prefernces_Routes=Router()
+
+Add_Prefernces_Routes.post('/api/students/addprefernces',(req,res)=>{
+
+  // ! update function
+  Add_preference_route_helper(req,res)
+  
+
+})
+
+// ! find student a mentor if he does not have
+export const find_studentAmentor=Router()
+find_studentAmentor.post('/api/students/findamentor',(req,res)=>{
+
+FindStudentAmentor_helper_function(req,res)
+})

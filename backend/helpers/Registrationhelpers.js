@@ -2,41 +2,37 @@ import { matchingDb_collection } from "../database/Schemas/MathingSchema.js";
 import { MentorsDb_collection } from "../database/Schemas/mentorSchama.js";
 import { studentDb_collection } from "../database/Schemas/studentSchema.js";
 import { map_Student_to_mentor } from "./algorithmsFunctions/Algorithms.js";
-import dotenv from 'dotenv'
-import bcrypt from 'bcryptjs'
-dotenv.config()
+import dotenv from "dotenv";
+import bcrypt from "bcryptjs";
+dotenv.config();
 import jwt from "jsonwebtoken";
 
-
-
 // ! add user preferences
-export const add_user_preferenceHelper = async (req,res, collection_name) =>{
-  const {preference, course, description} = req.body;
+export const add_user_preferenceHelper = async (req, res, collection_name) => {
+  const { preference, course, description } = req.body;
 
-  const values ={
+  const values = {
     preference: req.body.preference,
-    course : req.body.course,
-    description : req.body.description,
-
-  }
+    course: req.body.course,
+    description: req.body.description,
+  };
 
   const add_preference = await collection_name.create(values);
-  
-  if(!add_preference)  return res.json ({  error: true, message: "failed to add preferences"})
- 
-  return res.json({message: "preferences added successfuly"})
-}
 
+  if (!add_preference)
+    return res.json({ error: true, message: "failed to add preferences" });
+
+  return res.json({ message: "preferences added successfuly" });
+};
 
 // ! send preferences, course and description
-export const update_preference  = async (req,res,collection) =>{
-      const fetch_current_preference = await collection.find()
+export const update_preference = async (req, res, collection) => {
+  const fetch_current_preference = await collection.find();
 
-      if(!fetch_current_preference) return res.json({error: true , message: "failed to fetch preferences"})
-      return res.json(fetch_current_preference)
-
-    }
-
+  if (!fetch_current_preference)
+    return res.json({ error: true, message: "failed to fetch preferences" });
+  return res.json(fetch_current_preference);
+};
 
 export const addUser_helper = async (req, res, collection) => {
   const { email, password, name } = req.body;
@@ -44,31 +40,31 @@ export const addUser_helper = async (req, res, collection) => {
     // ! check if the student exist
     const userExist = await collection.findOne({ email });
     if (userExist) {
-      return res.json({error:true, message: "user already exists" });
+      return res.json({ error: true, message: "user already exists" });
     } else {
-   const   hashed_password= await bcrypt.hash(password,13)
+      const hashed_password = await bcrypt.hash(password, 13);
       const data_to_add = {
         name,
         email,
-        password:hashed_password,
+        password: hashed_password,
       };
 
       const add_student = await collection.create(data_to_add);
 
-      if (!add_student) return res.json({error:true, message: "failed to add the user" });
+      if (!add_student)
+        return res.json({ error: true, message: "failed to add the user" });
 
-      res.json({message:'user created succsessfully!'})
+      res.json({ message: "user created succsessfully!" });
 
       console.log(add_student);
-      // ! function to mao student to a mentor
-      // ! call this function after inserting prefences
-
-      // const maping = await map_Student_to_mentor(add_student, res);
-      // res.json({ message: maping });
+    
     }
   } catch (error) {
     console.log(error);
-    return res.json({error:true, message: "failed to fetch student details" });
+    return res.json({
+      error: true,
+      message: "failed to fetch student details",
+    });
   }
 };
 
@@ -148,41 +144,75 @@ export async function update_prefence_forStudent(req, res) {
   // console.log(update);
 }
 
-
-// ! login routes 
-export const handleStudentLogin=async(req,res)=>{
-  const {email,password}=req.body
+// ! login routes
+export const handleStudentLogin = async (req, res) => {
+  const { email, password } = req.body;
   // ! check if the user exist
 
-  const userExist=await studentDb_collection.findOne({email:email})
-  if(!userExist) return res.json({error:true,message:'invalid user credentials'})
-  
+  const userExist = await studentDb_collection.findOne({ email: email });
+  if (!userExist)
+    return res.json({ error: true, message: "invalid user credentials" });
 
   // ! validate password
-  const valid_password=await bcrypt.compare(password,userExist.password)
-  if(!valid_password) return res.json({error:true,message:'invalid user credentials'})
+  const valid_password = await bcrypt.compare(password, userExist.password);
+  if (!valid_password)
+    return res.json({ error: true, message: "invalid user credentials" });
   // !create token
-  const token= await jwt.sign({email:email},process.env.SECRET,{
-    expiresIn:'60s'
-  })
-  const refreshToken=await jwt.sign({email:email},process.env.REFRESH,{
-    expiresIn:'1y'
-  })
+  const token = await jwt.sign({ email: email }, process.env.SECRET, {
+    expiresIn: "60s",
+  });
+  const refreshToken = await jwt.sign({ email: email }, process.env.REFRESH, {
+    expiresIn: "1y",
+  });
 
   res.json({
-    status:200,
+    status: 200,
     token,
     refreshToken,
-    message:'User loged in succsessfuly',
-    role:userExist.role,
-    id:userExist._id,
-  })
+    message: "User loged in succsessfuly",
+    role: userExist.role,
+    id: userExist._id,
+  });
+};
 
-  
+// !updates students after selecting the
+export const Add_preference_route_helper = async (req, res) => {
+  const { preference, id } = req.body;
+ 
+  // !add to db
+  const added = await studentDb_collection.findByIdAndUpdate(id, {
+    $push: { preference: preference },
+  },{new:true});
+  console.log(added)
+  if (!added)
+    return res.json({
+      error: true,
+      message: "failed to update your career paths",
+    });
+
+  return res.json({
+    message:
+      "your career path has been updated ! ,you will be assigned a mentor soon!",
+  });
+};
 
 
+// ! find the student a mentor helper function
+export const FindStudentAmentor_helper_function=async(req,res)=>{
+
+  const{id}=req.body
+
+  // !find the student with that id
+  const student=await studentDb_collection.findById(id)
+  // ! if the student doess not exist
+  if(!student)return res.json({message:'student not found'})
+
+    // ! function to mao student to a mentor
+      // ! call this function after inserting prefences
+
+      console.log(student)
+       const maping = await map_Student_to_mentor(student, res);
+       res.json({ message: maping });
 
 
 }
-
-

@@ -53,7 +53,11 @@ state.message='your are required to choose a maximum of three career paths'
       state.prefs.splice(index,1)
 
     }
+    ,
+    clearCat:(state)=>{
+      state.prefs=[]
+    }
   },
 });
 export default userslice.reducer;
-export const { Settoken, Setroles,setId, SetLogout, Setrefreshtoken,setprefs,removeFromCat } = userslice.actions;
+export const { Settoken, Setroles,setId, SetLogout, Setrefreshtoken,setprefs,removeFromCat,clearCat } = userslice.actions;

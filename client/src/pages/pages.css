@@ -182,12 +182,13 @@ color: var(--clearWhite);
     gap: 1em;
     padding: 1em;
     position: relative;
+    place-content: center;
 }
 .single{
     width: 100%;
     background-color: var(--clearWhite);
     box-shadow: var(--boxshadow);
-    min-height: 150px;
+    height: 150px;
     text-align: center;
     border-radius: 5px;
    
@@ -204,6 +205,19 @@ position: relative;
     top: 0;
     display: grid;
     place-items: center;
+    
+}
+.click{
+    border-radius: 5px;
+    border: none;
+    background-color: var(--boldDarkText);
+    color: var(--bg);
+    box-shadow: var(--boxshadow);
+}
+.requstMentor{
+    text-align: center;
+    line-height: 2em;
+    padding: 1em;
     
 }
 
