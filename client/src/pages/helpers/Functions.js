@@ -8,6 +8,7 @@ export const handleformSubmitForSignUp = async (form) => {
   const name = formdata.get("name");
   const email = formdata.get("email");
   const password = formdata.get("password");
+  // console.log(password);
   const conpass = formdata.get("conpassword");
   if (!name || !email || !password || !conpass)
     return toast.error("all inputs are required");
@@ -52,7 +53,10 @@ export async function handleLoginForStudents(form) {
 }
 
 // !tshow or hide passwords
+
 export const showPassword = (input) => {
+  console.log(input);
+ 
   if (input.type === "password") {
     return (input.type = "text");
   } else {
