@@ -133,9 +133,13 @@ color: var(--clearWhite);
     display: grid;
    background-color: var(--clearWhite);
     padding: 2em;
-    min-height: 70vh;
+    min-height: 50vh;
+    max-height: 80vh;
 }
 
+.name{
+    color: var(--lightOrange);
+}
 
 
 .illustrator img{
@@ -155,7 +159,7 @@ color: var(--clearWhite);
     font-weight: 600;
 }
 .content h2{
-    color: var(--lightBlue);
+    color: var(--lightOrange);
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -165,6 +169,41 @@ color: var(--clearWhite);
 
 
 
+/* !prefences */
+
+.prefences{
+    display: grid;
+    background-color: var(--bg);
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    padding: 1em;
+}
+.single{
+    width: 100%;
+    background-color: var(--clearWhite);
+    box-shadow: var(--boxshadow);
+    min-height: 150px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+
+/* ! grid media querys */
+@media (max-width:530px) {
+    .prefences{
+        grid-template-columns: 1fr;
+    }
+    
+}
+@media (min-width:800px) {
+    .prefences{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    
+}
+/* !end of prefences */
 
 
 @media (max-width:640px) {

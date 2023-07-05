@@ -178,7 +178,7 @@ function Signup() {
             )}
 
             <div className="inputs">
-              <button className="btn btnsign">
+              <button  type="submit" className="btn btnsign">
                 {login ? "sign in" : " sign up"}
               </button>
             </div>

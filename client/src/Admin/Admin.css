@@ -1,0 +1,134 @@
+:root{
+    ---blueDark:#0c1b2f;
+    ---lightPink:#fe8073;
+    ---lightGreensish:#23a174;
+    --lightGrey:#afb4b8;
+    --bg:#f1f5f8;
+    --clearWhite:#ffff;
+    --txtOne:#edf6f9;
+    --boldDarkText:#1a659e;
+    --boxshadow:rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+}
+.AdminContainer{
+    background-color: var(--bg);
+    min-height: 100vh;
+    position: relative;
+
+}
+.adminNav{
+    height: 90px;
+    background-color: var(--boldDarkText);
+    color: var(--txtOne);
+    text-align: center;
+    border-bottom-left-radius: 50vw;
+    border-bottom-right-radius: 50vw;
+    
+}
+.statistics{
+    display: grid;
+    grid-template-columns: 1fr ;
+    gap: 1em;
+    background-color: var(--clearWhite);
+    padding: 2em 1em;
+}
+.first{
+    border-radius: 10px;
+    min-height: 150px;
+    color: var(--txtOne);
+    box-shadow: var(--boxshadow);
+    padding: 1em;
+    cursor: pointer;
+
+    
+}
+.first:nth-child(even){
+    background-color: var(---lightGreensish);
+}
+.first:nth-child(odd){
+    background-color: var(---lightPink);
+}
+
+.actions{
+    text-align: center;
+}
+.actionsContainer{
+    display: grid;
+    gap: 1em;
+    padding: 2em 1em;
+    grid-template-columns: 1fr ;
+
+}
+.singleAction{
+    border-radius: 10px;
+    background-color: var(--clearWhite);
+    min-height: 130px;
+    box-shadow: var(--boxshadow);
+    padding: 1em;
+    cursor: pointer;
+}
+
+/* !poop up formss */
+.popUp{
+    position: absolute;
+    height: 100%;
+    background-color: #0c1b2f2d;
+    width: 100%;
+    display: grid;
+    place-content: center;
+}
+
+.FormContainerAdmin{
+    background-color: var(--clearWhite);
+    min-height: 300px;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: var(--boxshadow);
+    display: grid;
+    place-content: center;
+    color: var(---blueDark);
+    
+}
+.inputsAdmin{
+    display: grid;
+    gap: 1em;
+}
+.FormContainerAdmin form input{
+    border: none;
+    border-bottom: 1px solid var(---blueDark);
+    padding-top: 1em;
+   
+
+}
+.FormContainerAdmin form input:focus{
+    outline: none;
+}
+.green{
+    background-color: var(---lightGreensish);
+}
+.center{
+    text-align: right;
+}
+.fa-circle-xmark{
+    color: red;
+    font-size: 25px;
+}
+
+
+
+@media (min-width:520px) {
+    .statistics,
+    .actionsContainer{
+        grid-template-columns: 1fr 1fr;
+    }
+    
+
+    
+}
+@media (min-width:800px) {
+    .statistics,
+    .actionsContainer{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    
+}

@@ -25,6 +25,7 @@
 }
 *{
     text-decoration: none;
+    list-style: none;
 }
 .naviagtion1 ul{
     display: flex;
@@ -37,10 +38,104 @@
     color:var(--boldDarkText);
 }
 
+.fa-xmark,.fa-bars{
+    font-size: 20px;
+    position: absolute;
+    right: 1em;
+    cursor: pointer;
+    visibility: hidden;
+}
+
+@media (max-width:800px) {
+    .naviagtion1 ul{
+        display: block;
+        background-color: #1a659e;
+        width: 50%;
+        position: fixed;
+        right: 0;
+        height: 60vh;
+        top: 1em;
+        text-align: center;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        box-shadow: var(--boxshadow);
+        transform: scaleX(0);
+        transition: .4s ease-in-out;
+       
+    }
+    .naviagtion1 ul li{
+        margin: 3em 0;
+    }
+    .fa-xmark{
+        top: 1em;
+        color: var(--bg);
+    }
+    .shownav ul{
+        transform: scaleX(1);
+    }
+    .fa-bars,
+    .fa-xmark{
+        visibility: visible;
+    }
+    .notActive{
+        color: var(--clearWhite);
+    }
+}
+
+/* ! more details about mmissin and vision */
+.container_more_info{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+    background-color: var(--bg);
+    padding-top: 4em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+.imageInfo img{
+    width: 100%;
+    border-top-right-radius: 60px;
+    box-shadow: var(--boxshadow);
+}
+.infoDescription{
+    display: grid;
+    place-content: center;
+    gap: 1em;
+}
+.mission{
+    background-color: var(--clearWhite);
+    min-height: 150px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: var(--boxshadow);
+    
+}
+.mission:last-child{
+    background-color: var(--boldDarkText);
+    color: var(--bg);
+}
+
+@media (max-width:520px) {
+    .naviagtion1 ul{
+        width: 80%;
+    }
+   
+    
+}
+@media (max-width:800px) {
+    .container_more_info{
+        grid-template-columns: 1fr;
+    }
+    
+}
 @media (min-width:900px) {
     .naviagtion1 ul{
         gap: 5em;
         font-size: 17px;
+    }
+    .infoDescription{
+        grid-template-columns: 1fr 1fr;
     }
     
 }

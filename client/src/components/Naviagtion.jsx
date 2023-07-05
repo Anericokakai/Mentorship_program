@@ -1,28 +1,56 @@
-import React from 'react'
-import {NavLink} from 'react-router-dom'
-import './components.css'
+import React from "react";
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import "./components.css";
 function Naviagtion() {
+  const [show, setshow] = useState(false);
+  // ! change the states on click
 
-    const CustomLink=(props)=>{
-        return <NavLink className={({isActive})=>{
-            return isActive?'active':'notActive'
-        }} {
-            ...props
-        }>
-
-        </NavLink>
+  const shownavigation = () => {
+    if (show == false) {
+      setshow(true);
+    } else {
+      setshow(false);
     }
+  };
+  console.log(show)
+  const CustomLink = (props) => {
+    return (
+      <NavLink
+        className={({ isActive }) => {
+          return isActive ? "active" : "notActive";
+        }}
+        {...props}
+      ></NavLink>
+    );
+  };
   return (
-<nav className='naviagtion1'>
-    <div className="logo"><h1>mentor.io</h1></div>
-    <ul>
-       <CustomLink to={'/'}>Home</CustomLink>
-        <CustomLink to={'/dashboard'} >dashboard</CustomLink>
-        <CustomLink to={'/members'}>members</CustomLink>
-        <CustomLink to={'/logout'}>logout</CustomLink>
-    </ul>
-</nav>
-  )
+    <nav className={`naviagtion1 ${show && 'shownav'}`}>
+      <div className="logo">
+        <h1>mentor.io</h1>
+      </div>
+      <i className="fa-solid fa-bars" onClick={shownavigation}></i>
+      <ul>
+        <i className="fa-solid fa-xmark" onClick={shownavigation}></i>
+        <li>
+          {" "}
+          <CustomLink to={"/"}>Home</CustomLink>
+        </li>
+        <li>
+          {" "}
+          <CustomLink to={"/dashboard"}>dashboard</CustomLink>
+        </li>
+        <li>
+          {" "}
+          <CustomLink to={"/dashboard"}>dashboard</CustomLink>
+        </li>
+        <li>
+          {" "}
+          <CustomLink to={"/dashboard"}>dashboard</CustomLink>
+        </li>
+      </ul>
+    </nav>
+  );
 }
 
-export default Naviagtion
+export default Naviagtion;
