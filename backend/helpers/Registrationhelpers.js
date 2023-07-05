@@ -6,6 +6,28 @@ import dotenv from 'dotenv'
 import bcrypt from 'bcryptjs'
 dotenv.config()
 import jwt from "jsonwebtoken";
+
+
+
+// ! add user preferences
+export const add_user_preferenceHelper = async (req,res, collection_name) =>{
+  const {preference, course, description} = req.body;
+
+  const values ={
+    preference: req.body.preference,
+    course : req.body.course,
+    description : req.body.description,
+
+  }
+  console.log(values);
+  const add_preference = await collection_name.create(values);
+  
+  if(!add_preference)  return res.json ({  error: true, message: "failed to add preferences"})
+ 
+  return res.json({mesage: "preferences added successfult"})
+}
+
+
 export const addUser_helper = async (req, res, collection) => {
   const { email, password, name } = req.body;
   try {
@@ -149,4 +171,8 @@ export const handleStudentLogin=async(req,res)=>{
   
 
 
+
+
 }
+
+
