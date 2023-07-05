@@ -2,7 +2,7 @@ import express from "express";
 // ! configure
 import bodyParser from "body-parser";
 import cors from 'cors'
-import { mentors_register_route, studentLogin, student_registering_route } from "./Routes/userRegister.js";
+import { mentors_register_route, studentLogin, student_registering_route, preference_route } from "./Routes/userRegister.js";
 import { connection_to_db } from "./database/connect.js";
 import { matchingDb_collection } from "./database/Schemas/MathingSchema.js";
 import { FetchStudentInfo, update_Students_prefernce, update_student_with_no_mentors } from "./Routes/UpdatesLogic.js";
@@ -36,6 +36,10 @@ app.use(mentors_register_route)
 app.use(FetchStudentInfo)
 // ! studentlogin
 app.use(studentLogin)
+
+
+// ! add preferences
+app.use(preference_route)
 
 // !update students with no mentors
 app.use(update_student_with_no_mentors)
