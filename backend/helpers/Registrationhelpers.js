@@ -19,12 +19,12 @@ export const add_user_preferenceHelper = async (req,res, collection_name) =>{
     description : req.body.description,
 
   }
-  console.log(values);
+
   const add_preference = await collection_name.create(values);
   
   if(!add_preference)  return res.json ({  error: true, message: "failed to add preferences"})
  
-  return res.json({mesage: "preferences added successfult"})
+  return res.json({message: "preferences added successfuly"})
 }
 
 
