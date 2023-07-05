@@ -28,6 +28,16 @@ export const add_user_preferenceHelper = async (req,res, collection_name) =>{
 }
 
 
+// ! send preferences, course and description
+export const update_preference  = async (req,res,collection) =>{
+      const fetch_current_preference = await collection.find()
+
+      if(!fetch_current_preference) return res.json({error: true , message: "failed to fetch preferences"})
+      return res.json(fetch_current_preference)
+
+    }
+
+
 export const addUser_helper = async (req, res, collection) => {
   const { email, password, name } = req.body;
   try {
