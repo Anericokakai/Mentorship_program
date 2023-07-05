@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addUser_helper, add_mentor, handleStudentLogin, add_user_preferenceHelper, update_preference , } from "../helpers/Registrationhelpers.js";
+import { addUser_helper, add_mentor, handleStudentLogin, add_user_preferenceHelper, update_preference } from "../helpers/Registrationhelpers.js";
 import { studentDb_collection } from "../database/Schemas/studentSchema.js";
 import { MentorsDb_collection } from "../database/Schemas/mentorSchama.js";
 import { preference_DB } from "../database/Schemas/PreferenceSchema.js"
@@ -43,10 +43,4 @@ send_prefetences.get("/api/students/send-pref", async(req,res)=>{
   update_preference(req,res, preference_DB)
 
 })
-// ! add user preferences
-const add_user_preferences = Router();
-add_user_preferences.post("/api/students/add-pref", async (req,res)=>{
-  add_user_preferences(req,res)
-
-} )
 

@@ -67,7 +67,6 @@ for (const mentor of mentors_results) {
 // console.log(matches)
 // ! function to push the mathes to db
 async function addMatches(matches) {
- 
   await matchingDb_collection.insertMany(matches);
 }
 
