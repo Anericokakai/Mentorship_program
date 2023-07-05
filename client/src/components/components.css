@@ -1,0 +1,46 @@
+
+:root{
+    --light_green:#38b000;
+    --darkGreen:#008000a8;
+    --darkBlue:#293241;
+    --lightOrange:#ee6c4d;
+    --lightWhite:#e0fbfc;
+    --lightBlue:#98c1d9;
+    --secondDarkBlue:#3d5a80;
+    --bg:#f1f5f8;
+    --clearWhite:#ffff;
+    --txtOne:#edf6f9;
+    --boldDarkText:#1a659e;
+    --boxshadow:rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+
+}
+
+/* ! bnaviagtions */
+.naviagtion1{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 1.7em;
+    align-items: center;
+}
+*{
+    text-decoration: none;
+}
+.naviagtion1 ul{
+    display: flex;
+    gap: 2em;
+}
+.active{
+    color: var(--lightOrange);
+}
+.notActive{
+    color:var(--boldDarkText);
+}
+
+@media (min-width:900px) {
+    .naviagtion1 ul{
+        gap: 5em;
+        font-size: 17px;
+    }
+    
+}

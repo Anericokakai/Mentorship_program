@@ -19,8 +19,9 @@
     font-family: 'Poppins', sans-serif;
 }
 
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&family=Nova+Mono&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
 
-  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nova+Mono&family=Poppins:wght@500;600;700&display=swap');
+
 
 
 /* ! signup page */
@@ -47,6 +48,14 @@
 .inputs{
    
     padding: 1em ;
+    position: relative;
+}
+.fa-eye,
+.fa-eye-slash{
+    position: absolute;
+    right: 10%;
+    top: 38%;
+    
 }
 .inputs input{
     padding: 1em ;
@@ -54,6 +63,9 @@
     border: none;
     box-shadow: var(--boxshadow);
 
+}
+.inputs input:focus{
+    outline: 2px solid var(--boldDarkText);
 }
 .btnsign{
     color: var(--lightWhite);
@@ -88,6 +100,15 @@ line-height: 1em;
     padding: 10px 15px;
     cursor: pointer;
 }
+.preloader{
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: 10%;
+}
+.preloader img{
+    width: 100%;
+}
 
 .signupsbtn{
     background: none;
@@ -102,9 +123,69 @@ color: var(--clearWhite);
     color: var(--darkBlue);
     background-color: var(--txtOne);
 }
+
+
+/* !home pages */
+.landing_conatiner{
+    background-color: var(--clearWhite);
+}
+.landingPage{
+    display: grid;
+   background-color: var(--clearWhite);
+    padding: 2em;
+    min-height: 70vh;
+}
+
+
+
+.illustrator img{
+    width: 100%;
+}
+.content,
+.illustrator{
+    display: flex;
+    flex-direction: column;
+    line-height: 3.5em;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+}
+.content h1{
+    color: var(--boldDarkText);
+    font-weight: 600;
+}
+.content h2{
+    color: var(--lightBlue);
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+/* !end of home pages */
+
+
+
+
+
 @media (max-width:640px) {
     .signupcontainer{
    grid-template-rows: 2fr 1fr;
+    }
+    .preloader{
+        top: 0;
+    }
+    .singupForm h1{
+        font-size: 25px;
+        padding-top: 2em;
+    }
+    .landingPage{
+        grid-template-rows: 1fr 1fr;
+    }
+    .content h1{
+        font-size: 25px;
+    }
+    .content h2{
+        font-size: 20px;
     }
     
 }
@@ -112,6 +193,9 @@ color: var(--clearWhite);
 @media (min-width:640px) {
     .signupcontainer{
         grid-template-columns: 2fr 1fr;
+    }
+    .landingPage{
+        grid-template-columns: 1fr 1fr;
     }
     
 }
