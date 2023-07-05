@@ -2,7 +2,7 @@ import express from "express";
 // ! configure
 import bodyParser from "body-parser";
 import cors from 'cors'
-import { mentors_register_route, studentLogin, student_registering_route, preference_route } from "./Routes/userRegister.js";
+import { mentors_register_route, studentLogin, student_registering_route, preference_route, send_prefetences } from "./Routes/userRegister.js";
 import { connection_to_db } from "./database/connect.js";
 import { matchingDb_collection } from "./database/Schemas/MathingSchema.js";
 import { FetchStudentInfo, update_Students_prefernce, update_student_with_no_mentors } from "./Routes/UpdatesLogic.js";
@@ -45,6 +45,9 @@ app.use(preference_route)
 app.use(update_student_with_no_mentors)
 // ! update students prefernce
 app.use(update_Students_prefernce)
+
+// ! send preferences
+app.use(send_prefetences)
 
 app.get('/',async(req,res)=>{
 const results= await fetchMathes()
