@@ -35,7 +35,7 @@ function Form({ hideform }) {
       <form action="" onSubmit={handleSubmit}>
         <div className="inputsAdmin">
           <label htmlFor="">preference</label>
-          <input type="text" placeholder="title"name= "preference" />
+          <input type="text" placeholder="title" name="preference" />
         </div>
         <div className="inputsAdmin">
           <label htmlFor=""> course</label>
