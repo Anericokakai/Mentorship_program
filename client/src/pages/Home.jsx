@@ -8,8 +8,14 @@ import { Fechprefernces, fetchstudentInfo } from "./helpers/homeFetchFunctions";
 import { useEffect } from "react";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import PopUp from "../components/PopUp";
+import Cart from "../components/Cart";
 function Home() {
   const [student, setstudent] = useState({});
+  const [prerence, setpreferences] = useState([{}]);
+  const [showpop, setshowpop] = useState(false);
+  const [selectedPref, setSelectedPref] = useState("");
+  const [showcart,setshowcat]=useState(false)
   // ! acces redux
   const { id } = useSelector((store) => store.userInfo);
   useEffect(() => {
@@ -20,20 +26,21 @@ function Home() {
       .catch((error) => {
         console.log(error);
       });
-
-    
   }, [id]);
-  useEffect(()=>{
-    Fechprefernces().then(data=>{
-      console.log(data)
-    }).catch((error) => {
-      toast.error("failed to connect!!");
-    });
+  useEffect(() => {
+    Fechprefernces()
+      .then((data) => {
+        setpreferences(data.data);
+      })
+      .catch((error) => {
+        toast.error("failed to connect!!");
+      });
+  }, []);
 
-  },[])
-
-  console.log(student);
-  console.log(student.preference);
+  const addtocart = (pref) => {
+    setshowpop(true);
+    setSelectedPref(pref);
+  };
   return (
     <div className="landing_conatiner">
       <ToastContainer
@@ -48,8 +55,9 @@ function Home() {
       <div className="landingPage">
         <div className="content">
           <h1>
-            Welcome to Mentor .io <span className="name">{student.name}</span>,
-            your ultimate platform for mentorship{" "}
+            Welcome to Mentor .io{" "}
+            <span className="name">{student && student.name}</span>, your
+            ultimate platform for mentorship{" "}
           </h1>
           <h2>Mentor.io connects you with perfect macth </h2>
         </div>
@@ -58,48 +66,55 @@ function Home() {
         </div>
       </div>
       {/* Available prefences */}
-      {student?.preference?.length < 1 ? (
+      {student && student?.preference?.length < 1 ? (
         <div>
           <h2>What are you intrested in ?</h2>
 
           <div className="prefences">
-            <div className="single">
-              <h3>Cyber Security</h3>
-              <p>follow your cyber sec path</p>
-            </div>
-            <div className="single">
-              <h3>Cyber Security</h3>
-              <p>follow your cyber sec path</p>
-            </div>
-            <div className="single">
-              <h3>Cyber Security</h3>
-              <p>follow your cyber sec path</p>
-            </div>
-            <div className="single">
-              <h3>Cyber Security</h3>
-              <p>follow your cyber sec path</p>
-            </div>
-            <div className="single">
-              <h3>Cyber Security</h3>
-              <p>follow your cyber sec path</p>
-            </div>
-            <div className="single">
-              <h3>Cyber Security</h3>
-              <p>follow your cyber sec path</p>
+            {showpop && (
+              <div className="popUpContainer">
+                <PopUp hide={setshowpop} pref={selectedPref}></PopUp>
+              </div>
+            )}
+            {prerence &&
+              prerence.map((single) => (
+                <div className="single">
+                  <h3>{single?.preference}</h3>
+                  <p>{single?.description}</p>
+                  <p>
+                    {" "}
+                    <strong> course: </strong>
+                    {single?.course}
+                  </p>
+                  <i
+                    class="fa-sharp fa-solid fa-plus"
+                    onClick={() => addtocart(single?.preference)}
+                  ></i>
+                </div>
+              ))}
+
+            <div className="cartIcon">
+            <div className={`cartContainer ${showcart && 'showcart'}`}>
+          <Cart carthide={setshowcat}></Cart>
+          </div>
+              <i class="fa-solid fa-cart-shopping" onClick={()=>setshowcat(true)}></i>
             </div>
           </div>
+   
+          
         </div>
       ) : (
         <div>
           <h2>your career path ?</h2>
 
           <div className="prefences">
-            {student?.preference?.map((single) => (
-              <div className="single">
-                <h3>{single}</h3>
-                <p>follow your cyber sec path</p>
-              </div>
-            ))}
+            {student &&
+              student?.preference?.map((single) => (
+                <div className="single">
+                  <h3>{single}</h3>
+                  <p>follow your cyber sec path</p>
+                </div>
+              ))}
           </div>
         </div>
       )}

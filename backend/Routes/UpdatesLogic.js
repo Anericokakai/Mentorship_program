@@ -22,6 +22,7 @@ update_student_with_no_mentors.post('/api/updatestudentwithnomentors',(req,res)=
     
 
     const {id}=req.body
+    if(!id)return res.json({error:true,message:'failed to feth data'})
 
    const student= await studentDb_collection.findById(id)
    if(!student)return res.json({error:true,message:'failed to feth data'})

@@ -1,14 +1,14 @@
-import mongoose,{ Schema} from "mongoose"  
+import mongoose, { Schema } from "mongoose";
 
-const preference_schema = new Schema({
-    preference : String,
-    descripton: String,
+const preference_schema = new Schema(
+  {
+    preference: String,
+    description: String,
     course: String,
+  },
+  {
+    collection: "preferences",
+  }
+);
 
-},
-{
-    collection: "preferences"
-})
-
-export const preference_DB = mongoose.model("preference", preference_schema)
-
+export const preference_DB = mongoose.model("preference", preference_schema);
