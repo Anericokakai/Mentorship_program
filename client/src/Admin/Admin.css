@@ -70,7 +70,7 @@
 
 /* !poop up formss */
 .popUp{
-    position: absolute;
+    position: fixed;
     height: 100%;
     background-color: #0c1b2f2d;
     width: 100%;
@@ -87,7 +87,13 @@
     display: grid;
     place-content: center;
     color: var(---blueDark);
+   
     
+}
+.adminLoader{
+    left: 50%;
+    top: 10%;
+    transform: translate(-50%,-50%);
 }
 .inputsAdmin{
     display: grid;

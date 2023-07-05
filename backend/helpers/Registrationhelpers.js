@@ -13,11 +13,25 @@ export const add_user_preferenceHelper = async (req, res, collection_name) => {
 
   const values = {
     preference: req.body.preference,
+
     course: req.body.course,
     description: req.body.description,
   };
   console.log(values);
   const add_preference = await collection_name.create(values);
+
+    course : req.body.course,
+    description : req.body.description,
+
+  }
+
+  const add_preference = await collection_name.create(values);
+  
+  if(!add_preference)  return res.json ({  error: true, message: "failed to add preferences"})
+ 
+  return res.json({message: "preferences added successfuly"})
+}
+
 
   if (!add_preference)
     return res.json({ error: true, message: "failed to add preferences" });

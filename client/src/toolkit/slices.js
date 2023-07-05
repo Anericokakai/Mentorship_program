@@ -4,7 +4,9 @@ const initialState = {
   token: "",
   refreshToken: "",
   role: "",
-  id:''
+  id:'',
+  prefs:[],
+  message:'added succsefully to your list'
 };
 
 const userslice = createSlice({
@@ -25,14 +27,33 @@ const userslice = createSlice({
       state.id=action.payload
 
     },
+setprefs:(state,action)=>{
+  
+  if(!state.prefs.includes(action.payload)&&state.prefs.length<=3){
+    state.prefs.push(action.payload)
+    state.message='added succsefully to your list'
+  }else if(state.prefs.length<=3){
+state.message='your are required to choose a maximum of three career paths'
+  }
+  else{
+    state.message='already in your list'
+    
+  }
 
+},
     SetLogout: (state) => {
       state.token = "";
       state.refreshToken = "";
       state.role = "";
       state.id=''
     },
+    removeFromCat:(state,action)=>{
+
+      const index=state.prefs.indexOf(action.payload)
+      state.prefs.splice(index,1)
+
+    }
   },
 });
 export default userslice.reducer;
-export const { Settoken, Setroles,setId, SetLogout, Setrefreshtoken } = userslice.actions;
+export const { Settoken, Setroles,setId, SetLogout, Setrefreshtoken,setprefs,removeFromCat } = userslice.actions;

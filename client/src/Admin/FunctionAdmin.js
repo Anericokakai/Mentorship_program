@@ -21,6 +21,7 @@ console.log(fromdata)
 
 
     }
+    console.log(obj)
   
     const send=await axios.post('http://localhost:8001/api/students/preferences',obj)
 
