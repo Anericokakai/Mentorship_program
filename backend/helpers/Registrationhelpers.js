@@ -56,7 +56,8 @@ export const addUser_helper = async (req, res, collection) => {
 
       res.json({ message: "user created succsessfully!" });
 
-      console.log(add_student);
+      console.log(add_student)
+
   
     
     }
@@ -69,6 +70,9 @@ export const addUser_helper = async (req, res, collection) => {
   }
 };
 
+
+
+
 // ! add new mentor
 export const add_mentor = async (req, res, collection) => {
   const { email, password, preference, course,name } = req.body;
@@ -79,13 +83,20 @@ export const add_mentor = async (req, res, collection) => {
     if (userExist) {
       return res.json({ error: "user already exists" });
     } else {
+      const hashedPassword = await bcrypt.hash(password, 10)
+      // const data_to_add = {
+      //   email,
+      //   password,
+      //   course,
+      //   preference,
+      // };
       const data_to_add = {
-        email,
-        password,
-        course,
-        name,
-        preference,
-      };
+        email: email,
+        password: hashedPassword,
+        
+      }
+      // console.log(data_to_add);
+
 
       const add_mentor = await collection.create(data_to_add);
 
@@ -147,6 +158,24 @@ export async function update_prefence_forStudent(req, res) {
   // console.log(update);
 }
 
+
+
+// ! login mentor
+export const login_mentor = async (req,res) =>{
+  const { email, password } = req.body
+  // console.log(req.body);
+  const mentor_exists = await MentorsDb_collection.findOne({email:email})
+
+  if(!mentor_exists) return res.json({error: true, message: "Invalid login details"})
+
+  const valid_password =  await bcrypt.compare(password, mentor_exists.password);
+  if (!valid_password)  return res.json({ error: true, message: "invalid user credentials" });
+
+  return res.json({ status: 200,  message: "user logged in successfully"})
+
+
+}
+
 // ! login routes
 export const handleStudentLogin = async (req, res) => {
   const { email, password } = req.body;
@@ -181,12 +210,16 @@ export const handleStudentLogin = async (req, res) => {
 // !updates students after selecting the
 export const Add_preference_route_helper = async (req, res) => {
   const { preference, id } = req.body;
- 
+
   // !add to db
-  const added = await studentDb_collection.findByIdAndUpdate(id, {
-    $push: { preference: preference },
-  },{new:true});
-  console.log(added)
+  const added = await studentDb_collection.findByIdAndUpdate(
+    id,
+    {
+      $push: { preference: preference },
+    },
+    { new: true }
+  );
+  console.log(added);
   if (!added)
     return res.json({
       error: true,
@@ -199,24 +232,23 @@ export const Add_preference_route_helper = async (req, res) => {
   });
 };
 
-
 // ! find the student a mentor helper function
-export const FindStudentAmentor_helper_function=async(req,res)=>{
-
-  const{id}=req.body
+export const FindStudentAmentor_helper_function = async (req, res) => {
+  const { id } = req.body;
 
   // !find the student with that id
-  const student=await studentDb_collection.findById(id)
+  const student = await studentDb_collection.findById(id);
   // ! if the student doess not exist
-  if(!student)return res.json({message:'student not found'})
+  if (!student) return res.json({ message: "student not found" });
 
-    // ! function to mao student to a mentor
-      // ! call this function after inserting prefences
+  // ! function to mao student to a mentor
+  // ! call this function after inserting prefences
 
-      console.log(student)
-       const maping = await map_Student_to_mentor(student, res);
-       res.json({ message: maping });
 
+  console.log(student);
+  const maping = await map_Student_to_mentor(student, res);
+  res.json({ message: maping });
+};
 
 }
 
@@ -237,4 +269,5 @@ console.log(req.body)
         
     
     }
+
 
