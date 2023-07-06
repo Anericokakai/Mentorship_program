@@ -1,7 +1,5 @@
 import Home from "../pages/Home";
 import Signup from "../pages/Signup";
-import Mentor from "../pages/Dashboard/Mentor";
-
 import Admin from "../Admin/Admin";
 import Student from "../pages/Dashboard/Student";
 import ChatPage from "../pages/chats/ChatPage";
@@ -21,10 +19,7 @@ export const routes = [
     element:<Admin></Admin>
 
   },
- {
-  path : '/dash',
-  element: <Mentor></Mentor>
- },
+
  {
   path: '/dashboard',
   element: <Student></Student>

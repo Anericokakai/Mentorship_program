@@ -24,6 +24,7 @@ function RelatedComponet({ hasMentor }) {
   }, [id]);
 
   console.log(relations);
+  console.log(relations?.mentor_id.role);
   return (
     <div className="menteesInformation">
       <div className="mentor">
@@ -36,12 +37,14 @@ function RelatedComponet({ hasMentor }) {
           <p>
             <strong className="strongs">career Path:</strong>
 
-            {relations && relations?.mentor_id?.preference.join(",")}
+            {relations && relations?.mentor_id?.preference.join(", ")}
           </p>
           <p>
             <strong className="strongs">Mentees :</strong>
             {relations && relations?.mentor_id?.student}
           </p>
+
+          <button>Chat with your mentor</button>
         </div>
       </div>
 
@@ -56,8 +59,10 @@ function RelatedComponet({ hasMentor }) {
               </p>
               <p>
                 <strong className="strongs"> Career path:</strong>
-                {single.preference?.join(",")}
+                {single.preference?.join(", ")}
               </p>
+              <button>Chat with {single?.name} </button>
+
             </div>
           ))}
         </div>

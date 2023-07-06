@@ -93,6 +93,7 @@ export const add_mentor = async (req, res, collection) => {
       const data_to_add = {
         email: email,
         password: hashedPassword,
+        name: name,
         
       }
       // console.log(data_to_add);
