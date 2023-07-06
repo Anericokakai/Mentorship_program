@@ -112,7 +112,11 @@
     padding: 10px;
     border-radius: 10px;
     box-shadow: var(--boxshadow);
+    padding: 1em;
     
+}
+.mission p{
+    text-align: left;
 }
 .mission:last-child{
     background-color: var(--boldDarkText);

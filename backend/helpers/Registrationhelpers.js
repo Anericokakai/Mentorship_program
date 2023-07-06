@@ -71,8 +71,9 @@ export const addUser_helper = async (req, res, collection) => {
 
 // ! add new mentor
 export const add_mentor = async (req, res, collection) => {
-  const { email, password, preference, course } = req.body;
+  const { email, password, preference, course,name } = req.body;
   try {
+
     // ! check if the student exist
     const userExist = await collection.findOne({ email });
     if (userExist) {
@@ -82,6 +83,7 @@ export const add_mentor = async (req, res, collection) => {
         email,
         password,
         course,
+        name,
         preference,
       };
 
@@ -91,7 +93,7 @@ export const add_mentor = async (req, res, collection) => {
 
       res.json({ status: 200, succsess: "user created succsessfully" });
 
-      console.log(add_mentor);
+
       // !give the mentor students that match his prefernce that have no mentors
     }
   } catch (error) {

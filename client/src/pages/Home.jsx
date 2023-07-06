@@ -103,7 +103,7 @@ function Home() {
                   <p>{single?.description}</p>
                   <p>
                     {" "}
-                    <strong> course: </strong>
+                    <strong className="strongsColor"> course: </strong>
                     {single?.course}
                   </p>
                   <i

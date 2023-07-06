@@ -3,7 +3,9 @@ import axios from "axios";
 export const fetchstudentInfo = async (id) => {
   const result = await axios.post(
     "https://mentorship-program.onrender.com/api/fetchinfo",
-    { id: id }
+    {
+      id: id,
+    }
   );
   return result;
 };

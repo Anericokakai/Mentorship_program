@@ -192,10 +192,14 @@ color: var(--clearWhite);
     height: 150px;
     text-align: center;
     border-radius: 5px;
-   
+   padding: 3px 5px;
 position: relative;
 }
-
+.single p{
+    text-align: left;
+    font-size: 14px;
+    color: var(--darkBlue);
+}
 
 .popUpContainer{
     position: fixed;
@@ -302,6 +306,9 @@ background-color: var(--bg);
     cursor: pointer;
     background-color: var(--light_green);
 }
+.strongsColor{
+    color: #000814;
+}
 
 @media (max-width:640px) {
     .signupcontainer{
@@ -332,6 +339,7 @@ background-color: var(--bg);
     font-size: 27px;
     font-weight: 800;
     cursor: pointer;
+    color: var(--lightOrange);
 
 }
 .fa-plus:hover{
