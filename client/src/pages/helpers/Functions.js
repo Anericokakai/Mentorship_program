@@ -25,7 +25,7 @@ export const handleformSubmitForSignUp = async (form) => {
   };
   console.log(obj);
   const response = await axios.post(
-    "https://mentorship-program.onrender.com/api/students/register",
+    "http://localhost:8001/api/students/register",
     obj
   );
   return response;
@@ -45,7 +45,7 @@ export async function handleLoginForStudents(form) {
   };
   console.log(obj);
   const response = await axios.post(
-    "https://mentorship-program.onrender.com/api/students/login",
+    "http://localhost:8001/api/students/login",
     obj
   );
   return response;
@@ -58,11 +58,11 @@ export const showPassword = (input) => {
   } else {
     input.type = "password";
   }
-}
+};
 
 // ! Mentor Signup Functions
-export const handleFormSubmitMentors = async (form) =>{
-  const formdata = new FormData(form)
+export const handleFormSubmitMentors = async (form) => {
+  const formdata = new FormData(form);
   const name = formdata.get("name");
   const email = formdata.get("email");
   const password = formdata.get("password");
@@ -88,7 +88,7 @@ export const handleFormSubmitMentors = async (form) =>{
   );
   return response;
 };
-export const handleMentorLogin = async (form) =>{
+export const handleMentorLogin = async (form) => {
   const formdata = new FormData(form);
 
   const email = formdata.get("email");
@@ -106,7 +106,4 @@ export const handleMentorLogin = async (form) =>{
     obj
   );
   return response;
-
-}
-
-
+};

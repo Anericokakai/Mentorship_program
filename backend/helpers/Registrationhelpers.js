@@ -250,7 +250,7 @@ export const FindStudentAmentor_helper_function = async (req, res) => {
   res.json({ message: maping });
 };
 
-}
+
 
 
 // !relationsRoutes
