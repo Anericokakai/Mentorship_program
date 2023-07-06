@@ -9,6 +9,7 @@ const Mentors_collection=new Schema({
         unique:true,
         required:true,
     },
+    password: String,
     student:{type:Number,
     default:0},
     preference:[String],

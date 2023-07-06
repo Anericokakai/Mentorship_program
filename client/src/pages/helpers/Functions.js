@@ -60,5 +60,53 @@ export const showPassword = (input) => {
   }
 };
 
+// ! Mentor Signup Functions
+export const handleFormSubmitMentors = async (form) =>{
+  const formdata = new FormData(form)
+  const name = formdata.get("name");
+  const email = formdata.get("email");
+  const password = formdata.get("password");
+  const conpass = formdata.get("conpassword");
+  if (!name || !email || !password || !conpass)
+    return toast.error("all inputs are required");
+
+  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
+    return toast.error("valid email adress is required");
+  }
+
+  if (password !== conpass) return toast.error(`user's passwords dont match`);
+
+  const obj = {
+    name: name,
+    email: email,
+    password: password,
+  };
+  console.log(obj);
+  const response = await axios.post(
+    "http://localhost:8001/api/mentors/register",
+    obj
+  );
+  return response;
+};
+export const handleMentorLogin = async (form) =>{
+  const formdata = new FormData(form);
+
+  const email = formdata.get("email");
+  const password = formdata.get("password");
+  if (!email || !password) return toast.error("all fileds are required");
+  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email))
+    return toast.error("valid email adress is required");
+  const obj = {
+    email: email,
+    password: password,
+  };
+  console.log(obj);
+  const response = await axios.post(
+    "http://localhost:8001/api/mentors/login",
+    obj
+  );
+  return response;
+
+}
 
 
