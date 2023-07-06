@@ -125,19 +125,8 @@ function Home() {
           </div>
         </div>
       ) : (
-        <div>
-          <h2>your career path ?</h2>
-
-          <div className="prefences">
-            {student &&
-              student?.preference?.map((single) => (
-                <div className="single">
-                  <h3>{single}</h3>
-                  <p>follow your cyber sec path</p>
-                </div>
-              ))}
-          </div>
-        </div>
+        <></>
+        
       )}
       {student && !student.hasMentor && student?.preference?.length > 0 && (
         <div className="requstMentor">
@@ -153,12 +142,7 @@ function Home() {
       )}
 
       <div>
-        {student && student.hasMentor && (
-          <div>
-            <h4>Your mentor and other students with the same same mentor</h4>
-            <RelatedComponet hasMentor={student.hasMentor}></RelatedComponet>
-          </div>
-        )}
+        
       </div>
 
       <MoreInfo></MoreInfo>

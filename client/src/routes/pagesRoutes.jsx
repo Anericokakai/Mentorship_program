@@ -26,7 +26,7 @@ export const routes = [
   element: <Mentor></Mentor>
  },
  {
-  path: '/student',
+  path: '/dashboard',
   element: <Student></Student>
  },
  {
