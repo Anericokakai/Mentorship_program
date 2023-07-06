@@ -58,10 +58,7 @@ app.use(update_Students_prefernce)
 // ! send preferences
 app.use(send_prefetences)
 
-app.get('/',async(req,res)=>{
-const results= await fetchMathes()
-    res.json(results)
-})
+
 
 
 
