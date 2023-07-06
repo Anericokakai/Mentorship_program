@@ -6,10 +6,11 @@ import { mentors_register_route, studentLogin, student_registering_route, prefer
 import { connection_to_db } from "./database/connect.js";
 import { matchingDb_collection } from "./database/Schemas/MathingSchema.js";
 import { Add_Prefernces_Routes, FetchStudentInfo, find_studentAmentor, RelationsRoute, update_Students_prefernce, update_student_with_no_mentors } from "./Routes/UpdatesLogic.js";
-
+import dotenv from 'dotenv'
 // ! application 
 const app=express()
 // ! configure the files
+dotenv.config()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors())
@@ -19,7 +20,7 @@ app.use(cors())
 connection_to_db()
   .then(() => {
     console.log("connected");
-    app.listen(8001,()=>{
+    app.listen(process.env.PORT,()=>{
         console.log('app listening at port 8001')
     })
 
