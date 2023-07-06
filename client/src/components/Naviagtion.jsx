@@ -42,11 +42,11 @@ function Naviagtion() {
         </li>
         <li>
           {" "}
-          <CustomLink to={"/dashboard"}>dashboard</CustomLink>
+          <CustomLink to={"/mentors"}>Mentors</CustomLink>
         </li>
         <li>
           {" "}
-          <CustomLink to={"/dashboard"}>dashboard</CustomLink>
+          <CustomLink to={"/chatroom"}>chat room</CustomLink>
         </li>
       </ul>
     </nav>

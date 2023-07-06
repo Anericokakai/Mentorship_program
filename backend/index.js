@@ -5,7 +5,7 @@ import cors from 'cors'
 import { mentors_register_route, studentLogin, student_registering_route, preference_route, send_prefetences } from "./Routes/userRegister.js";
 import { connection_to_db } from "./database/connect.js";
 import { matchingDb_collection } from "./database/Schemas/MathingSchema.js";
-import { Add_Prefernces_Routes, FetchStudentInfo, find_studentAmentor, update_Students_prefernce, update_student_with_no_mentors } from "./Routes/UpdatesLogic.js";
+import { Add_Prefernces_Routes, FetchStudentInfo, find_studentAmentor, RelationsRoute, update_Students_prefernce, update_student_with_no_mentors } from "./Routes/UpdatesLogic.js";
 
 // ! application 
 const app=express()
@@ -36,6 +36,8 @@ app.use(mentors_register_route)
 app.use(FetchStudentInfo)
 // ! studentlogin
 app.use(studentLogin)
+// !related routes
+app.use(RelationsRoute)
 
 
 // ! add preferences
@@ -61,18 +63,5 @@ const results= await fetchMathes()
 })
 
 
-// ! fetch the related data
-async function fetchMathes() {
-    try {
-      const results = await matchingDb_collection
-        .find()
-        .populate("student_id")
-        .populate("mentor_id")
-        .exec();
-        return results
-    } catch (error) {
 
-      console.log(error)
-    }
-  }
   

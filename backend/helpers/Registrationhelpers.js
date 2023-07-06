@@ -57,6 +57,7 @@ export const addUser_helper = async (req, res, collection) => {
       res.json({ message: "user created succsessfully!" });
 
       console.log(add_student);
+  
     
     }
   } catch (error) {
@@ -216,3 +217,22 @@ export const FindStudentAmentor_helper_function=async(req,res)=>{
 
 
 }
+
+
+// !relationsRoutes
+export const HansdleRelationLogic=async(req,res)=>{
+
+  // ! fetch the related data
+const {id}=req.body
+console.log(req.body)
+        const results = await matchingDb_collection
+          .find({student_id:id})
+          .populate("student_id")
+          .populate("mentor_id")
+          .exec();
+          if(!results)return res.json({error:true,message:'failed to retrieve collection'})
+          res.json(results)
+        
+    
+    }
+

@@ -4,12 +4,17 @@ import Naviagtion from "../components/Naviagtion";
 import gif1 from "../images/gif1.png";
 import "./pages.css";
 import { useSelector, UseSelector } from "react-redux/es/hooks/useSelector";
-import { assignMentor_helper, Fechprefernces, fetchstudentInfo } from "./helpers/homeFetchFunctions";
+import {
+  assignMentor_helper,
+  Fechprefernces,
+  fetchstudentInfo,
+} from "./helpers/homeFetchFunctions";
 import { useEffect } from "react";
 import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import PopUp from "../components/PopUp";
 import Cart from "../components/Cart";
+import RelatedComponet from "../components/RelatedComponet";
 function Home() {
   const [student, setstudent] = useState({});
   const [prerence, setpreferences] = useState([{}]);
@@ -17,7 +22,10 @@ function Home() {
   const [selectedPref, setSelectedPref] = useState("");
   const [showcart, setshowcat] = useState(false);
   // ! acces redux
-  const { id } = useSelector((store) => store.userInfo);
+  const { id, token, refreshToken } = useSelector((store) => store.userInfo);
+  if (!token || !refreshToken || !id) {
+    window.location.href = "/signup";
+  }
   useEffect(() => {
     fetchstudentInfo(id)
       .then((data) => {
@@ -39,11 +47,13 @@ function Home() {
 
   // !find a mentor for the studdent
   const AssignMentor = () => {
-    assignMentor_helper(id).then(data=>{
-      toast.success(data.data.message)
-    }).catch(error=>{
-      toast.error('failed to connect to the server')
-    })
+    assignMentor_helper(id)
+      .then((data) => {
+        toast.success(data.data.message);
+      })
+      .catch((error) => {
+        toast.error("failed to connect to the server");
+      });
   };
 
   // !add to cart the selected prefrence
@@ -129,7 +139,7 @@ function Home() {
           </div>
         </div>
       )}
-      {student && !student.hasMentor && (
+      {student && !student.hasMentor && student?.preference?.length > 0 && (
         <div className="requstMentor">
           <h4>It Seems that you dont have a mentor yet </h4>
           <p>
@@ -141,6 +151,15 @@ function Home() {
           </button>
         </div>
       )}
+
+      <div>
+        {student && student.hasMentor && (
+          <div>
+            <h4>Your mentor and other students with the same same mentor</h4>
+            <RelatedComponet hasMentor={student.hasMentor}></RelatedComponet>
+          </div>
+        )}
+      </div>
 
       <MoreInfo></MoreInfo>
     </div>

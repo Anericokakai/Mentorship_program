@@ -1,7 +1,8 @@
 import { Router } from "express";
+import { matchingDb_collection } from "../database/Schemas/MathingSchema.js";
 import { studentDb_collection } from "../database/Schemas/studentSchema.js";
 import { map_unmathedStudents } from "../helpers/algorithmsFunctions/unmarchedAlgo.js";
-import { Add_preference_route_helper, FindStudentAmentor_helper_function, update_prefence_forStudent } from "../helpers/Registrationhelpers.js";
+import { Add_preference_route_helper, FindStudentAmentor_helper_function, HansdleRelationLogic, update_prefence_forStudent } from "../helpers/Registrationhelpers.js";
 export const update_student_with_no_mentors=Router()
 
 update_student_with_no_mentors.post('/api/updatestudentwithnomentors',(req,res)=>{
@@ -24,6 +25,14 @@ update_student_with_no_mentors.post('/api/updatestudentwithnomentors',(req,res)=
     const {id}=req.body
     if(!id)return res.json({error:true,message:'failed to feth data'})
 
+   
+        const results = await matchingDb_collection
+          .find({student_id:id})
+          .populate("student_id")
+          .populate("mentor_id")
+          .exec();
+         
+   
    const student= await studentDb_collection.findById(id)
    if(!student)return res.json({error:true,message:'failed to feth data'})
     res.json({studentInfo:student})
@@ -47,4 +56,12 @@ export const find_studentAmentor=Router()
 find_studentAmentor.post('/api/students/findamentor',(req,res)=>{
 
 FindStudentAmentor_helper_function(req,res)
+})
+
+
+// ! relations routes
+export const RelationsRoute=Router()
+RelationsRoute.post('/api/students/relations',async(req,res)=>{
+
+   HansdleRelationLogic(req,res)
 })

@@ -25,3 +25,10 @@ export const assignMentor_helper=async(id)=>{
     return results
 
 }
+
+
+// ! fetch relations
+export const FetchRelations=async(id)=>{
+ const result=   await  axios.post('http://localhost:8001/api/students/relations',id)
+ return result
+}

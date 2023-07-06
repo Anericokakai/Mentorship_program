@@ -8,7 +8,7 @@ export async function fetchMentors(student) {
       {
         $match: {
           student: { $lt: 5 },
-          course: student.course,
+          // course: student.course,
         },
       },
     ]);

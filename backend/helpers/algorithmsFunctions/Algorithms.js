@@ -15,6 +15,7 @@ export const map_Student_to_mentor = async (student) => {
     try {
       //   ! fetch mentors
       const mentors = await fetchMentors(student);
+      console.log(mentors)
       if (mentors.length > 0) {
         const matching = mentors.map((mentor) => {
           const highestmatch = mentor.preference.filter((single_preference) =>

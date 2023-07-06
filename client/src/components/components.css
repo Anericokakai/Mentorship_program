@@ -186,10 +186,56 @@
     color: red;
 }
 
+/* !mentors and metesss detais */
+.menteesInformation{
+    display: grid;
+    gap: 1em;
+    padding: 2em 1em;
+    
+}
+.mentor{
+ 
+    border-radius: 10px;
+    background-color: var(--bg);
+    line-height: 2em;
+    padding: 1em;
+    box-shadow: var(--boxshadow);
+}
+.detailsOfMentor{
+    text-align: left;
+
+}
+.students{
+    display: grid;
+    gap: 1em;
+}
+
+.singleStudent{
+    background-color: var(--bg);
+    min-height: 90px;
+    border-radius: 10px;
+    box-shadow: var(--boxshadow);
+    padding: 10px 1em;
+}
+.singleStudent p{
+    text-align: left;
+}
+.underline{
+    text-decoration: underline;
+}
+.strongs{
+    padding-right:  10px;
+}
+
 @media (max-width:520px) {
     .naviagtion1 ul{
         width: 80%;
     }
+    .menteesInformation{
+        grid-template-columns: 1fr;
+    }
+   
+    .me
 
     .pop h1{
         font-size: 25px;
@@ -200,9 +246,17 @@
    
     
 }
+
 @media (max-width:800px) {
     .container_more_info{
         grid-template-columns: 1fr;
+    }
+    
+    
+}
+@media (min-width:520px) {
+    .menteesInformation{
+        grid-template-columns: 1fr 1fr;
     }
     
 }
@@ -213,6 +267,18 @@
     }
     .infoDescription{
         grid-template-columns: 1fr 1fr;
+    }
+    .menteesInformation{
+        grid-template-columns: 1fr 2fr;
+    }
+    .students{
+        grid-template-columns: 1fr 1fr;
+    }
+    
+}
+@media (min-width:1200px) {
+    .students{
+        grid-template-columns:  1fr 1fr 1fr;
     }
     
 }
