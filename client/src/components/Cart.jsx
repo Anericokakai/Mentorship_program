@@ -10,7 +10,10 @@ function Cart({ carthide }) {
   const dispatch = useDispatch();
 
   
+const reload=()=>{
+   return window.location.reload()
 
+}
   //   ! submit the prefernces
   const sendToBackEnd = () => {
     const values={
@@ -26,7 +29,7 @@ function Cart({ carthide }) {
         toast.error(data.data.message)
       }else{
         toast.success(data.data.message)
-        setTimeout(window.location.reload(),5000)
+    setTimeout(reload,5000)
       }
     }).catch(error=>{
       toast.error('failed to acces the database')

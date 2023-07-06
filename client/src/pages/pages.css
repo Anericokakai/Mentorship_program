@@ -77,6 +77,7 @@
    border: none;
    
 }
+
 .signdetails{
     background-color: var(--lightBlue);
     color: var(--txtOne);
@@ -129,6 +130,8 @@ color: var(--clearWhite);
 /* !home pages */
 .landing_conatiner{
     background-color: var(--clearWhite);
+    text-align: center;
+    
 }
 .landingPage{
     display: grid;
@@ -138,9 +141,7 @@ color: var(--clearWhite);
     max-height: 80vh;
 }
 
-.prefences{
-    min-height: 60vh;
-}
+
 .name{
     color: var(--lightOrange);
 }
@@ -191,10 +192,14 @@ color: var(--clearWhite);
     height: 150px;
     text-align: center;
     border-radius: 5px;
-   
+   padding: 3px 5px;
 position: relative;
 }
-
+.single p{
+    text-align: left;
+    font-size: 14px;
+    color: var(--darkBlue);
+}
 
 .popUpContainer{
     position: fixed;
@@ -272,6 +277,39 @@ background-color: var(--bg);
 /* !end of prefences */
 
 
+/* !4040 */
+.containerfour{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+.four0four{
+    background: url('../images/dribbble.gif');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+   height: 100vh;
+   width: 60vw;
+   display: flex;
+   flex-direction: column;
+   align-items: flex;
+   text-align: center;
+   padding: 7em 0;
+}
+.fourbtn{
+    padding: 1em 2em;
+    border-radius: 20px;
+    color: var(--bg);
+    border: none;
+    cursor: pointer;
+    background-color: var(--light_green);
+}
+.strongsColor{
+    color: #000814;
+}
+
 @media (max-width:640px) {
     .signupcontainer{
    grid-template-rows: 2fr 1fr;
@@ -301,6 +339,7 @@ background-color: var(--bg);
     font-size: 27px;
     font-weight: 800;
     cursor: pointer;
+    color: var(--lightOrange);
 
 }
 .fa-plus:hover{
@@ -321,6 +360,9 @@ background-color: var(--bg);
 @media (min-width:1200px) {
     .prefences{
         grid-template-columns:  1fr 1fr 1fr 1fr;
+    }
+    .four0four{
+        padding: 2em 0;
     }
     
 }

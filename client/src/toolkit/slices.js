@@ -29,10 +29,10 @@ const userslice = createSlice({
     },
 setprefs:(state,action)=>{
   
-  if(!state.prefs.includes(action.payload)&&state.prefs.length<=3){
+  if(!state.prefs.includes(action.payload)&&state.prefs.length<3){
     state.prefs.push(action.payload)
     state.message='added succsefully to your list'
-  }else if(state.prefs.length<=3){
+  }else if(state.prefs.length<3){
 state.message='your are required to choose a maximum of three career paths'
   }
   else{

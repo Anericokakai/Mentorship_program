@@ -56,7 +56,10 @@ export const addUser_helper = async (req, res, collection) => {
 
       res.json({ message: "user created succsessfully!" });
 
-      console.log(add_student);
+      console.log(add_student)
+
+  
+    
     }
   } catch (error) {
     console.log(error);
@@ -72,8 +75,9 @@ export const addUser_helper = async (req, res, collection) => {
 
 // ! add new mentor
 export const add_mentor = async (req, res, collection) => {
-  const { email, password, preference, course } = req.body;
+  const { email, password, preference, course,name } = req.body;
   try {
+
     // ! check if the student exist
     const userExist = await collection.findOne({ email });
     if (userExist) {
@@ -93,13 +97,14 @@ export const add_mentor = async (req, res, collection) => {
       }
       // console.log(data_to_add);
 
+
       const add_mentor = await collection.create(data_to_add);
 
       if (!add_mentor) return res.json({ error: "failed to add the user" });
 
       res.json({ status: 200, succsess: "user created succsessfully" });
 
-      console.log(add_mentor);
+
       // !give the mentor students that match his prefernce that have no mentors
     }
   } catch (error) {
@@ -239,7 +244,30 @@ export const FindStudentAmentor_helper_function = async (req, res) => {
   // ! function to mao student to a mentor
   // ! call this function after inserting prefences
 
+
   console.log(student);
   const maping = await map_Student_to_mentor(student, res);
   res.json({ message: maping });
 };
+
+}
+
+
+// !relationsRoutes
+export const HansdleRelationLogic=async(req,res)=>{
+
+  // ! fetch the related data
+const {id}=req.body
+console.log(req.body)
+        const results = await matchingDb_collection
+          .find({student_id:id})
+          .populate("student_id")
+          .populate("mentor_id")
+          .exec();
+          if(!results)return res.json({error:true,message:'failed to retrieve collection'})
+          res.json(results)
+        
+    
+    }
+
+

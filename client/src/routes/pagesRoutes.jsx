@@ -7,6 +7,8 @@ import Student from "../pages/Dashboard/Student";
 import ChatPage from "../pages/chats/ChatPage";
 import MentorSignup from "../pages/MentorSignup";
 
+import PageNotFound from "../pages/PageNotFound";
+
 export const routes = [
   { element: <Signup></Signup>, path: "/signup" },
   {
@@ -17,6 +19,7 @@ export const routes = [
   {
     path:'/admin',
     element:<Admin></Admin>
+
   },
  {
   path : '/dash',
@@ -34,6 +37,10 @@ export const routes = [
   path: '/mentor-signup',
   element: <MentorSignup></MentorSignup>
  }
+  ,{
+    path:'*',
+    element:<PageNotFound></PageNotFound>
+  }
 
   
 ];

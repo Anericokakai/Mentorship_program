@@ -36,6 +36,9 @@ function Signup() {
   }
   // ! redirect function
   // todo REUSABLES
+  const redirect=()=>{
+    return window.location.href='/'
+  }
 
   // !handle change of form
   const handleForm = async (e) => {
@@ -79,6 +82,8 @@ function Signup() {
             dispatch(setId(id))
 
             formsInputs.reset();
+
+            setTimeout(redirect,4000)
           }
         })
         .catch((error) => {
@@ -95,7 +100,8 @@ function Signup() {
     } else {
       setshow(false);
     }
-    showPassword(inputType_password);
+    console.log(inputType_password)
+      inputType_password && showPassword(inputType_password);
   };
   const showOrHideCon = () => {
     if (show2 === false) {
