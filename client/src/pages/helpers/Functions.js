@@ -25,7 +25,7 @@ export const handleformSubmitForSignUp = async (form) => {
   };
   console.log(obj);
   const response = await axios.post(
-    "http://localhost:8001/api/students/register",
+    "https://mentorship-program.onrender.com/api/students/register",
     obj
   );
   return response;
@@ -45,7 +45,7 @@ export async function handleLoginForStudents(form) {
   };
   console.log(obj);
   const response = await axios.post(
-    "http://localhost:8001/api/students/login",
+    "https://mentorship-program.onrender.com/api/students/login",
     obj
   );
   return response;
@@ -59,6 +59,3 @@ export const showPassword = (input) => {
     input.type = "password";
   }
 };
-
-
-
