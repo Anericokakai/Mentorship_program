@@ -369,3 +369,19 @@ background-color: var(--bg);
     }
     
 }
+
+ /*! strength of the password */
+
+ .red{
+    color: red;
+ }
+ .strong{
+    color: #38b000;
+ }
+ .message{
+    font-size: 12px;
+    padding: 0 1em;
+ }
+ .medium{
+    color: var(--lightOrange);
+ }
