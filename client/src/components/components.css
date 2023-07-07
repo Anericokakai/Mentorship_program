@@ -207,8 +207,24 @@
 }
 .detailsOfMentor{
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
 }
+.detailsOfMentor button{
+    padding: 8px 12px;
+    margin-top: 50px;
+    cursor: pointer;
+    color: #98c1d9;
+    background-color: #293241;
+    border: none;
+    border-radius: 10px;
+}
+.detailsOfMentor button:hover{
+    background-color: #1a659e;
+}
+
 .students{
     display: grid;
     gap: 1em;
@@ -223,6 +239,18 @@
 }
 .singleStudent p{
     text-align: left;
+}
+.singleStudent button{
+    padding: 8px 12px;
+    margin-top: 50px;
+    cursor: pointer;
+    color: #98c1d9;
+    background-color: #293241;
+    border: none;
+    border-radius: 10px;
+}
+.singleStudent button:hover{
+    background-color: #1a659e;
 }
 .underline{
     text-decoration: underline;

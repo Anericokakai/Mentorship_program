@@ -1,5 +1,5 @@
 import React from "react";
-import "./student.scss";
+import "./student.css";
 import Naviagtion from "../../components/Naviagtion";
 import Studentcard from "./components/Studentcard";
 import Footer from "../Footer";
@@ -23,7 +23,7 @@ function Student() {
       });
   }, [id]);
   console.log(student);
-  console.log(student.hasMentor)
+  console.log(student.hasMentor);
   return (
     <div className="students-dash">
       <div className="container-dash">
@@ -32,46 +32,47 @@ function Student() {
         </div>
         <div className="welcome">
           <div className="welcome-text">
-        
-
             <h1>
-              Good Evening, <span>John</span>
+              Good Evening, <span>{student.name}</span>
             </h1>
-            <h3>Chat with your mentor</h3>
           </div>
         </div>
-
-         <div>
-   <h2>your career path ?</h2>
-
-   <div className="prefences">
-     {student &&
-       student?.preference?.map((single) => (
-         <div className="single">
-           <h3>{single}</h3>
-           <p>follow your cyber sec path</p>
-         </div>
-       ))}
-   </div>
- </div>
-       
-        <div className="mentor-profile">
-        {student && student.hasMentor && (
-          <div>
-            <h4>Your mentor and other students with the same same mentor</h4>
-            <RelatedComponet hasMentor={student.hasMentor}></RelatedComponet>
+        {/*         // ! your preferences
+         */}
+        <div>
+          <h2>Your preferences : </h2>
+          {/* prefences */}
+          <div className="prefences">
+            {student &&
+              student?.preference?.map((single) => (
+                <div className="single">
+                 
+                  
+                    <h3>{single}</h3>
+                    <button>See {single} courses </button>
+                
+                </div>
+              ))}
           </div>
-        )}
-          <Studentcard></Studentcard>
+        </div>
+        <div className="mentor-profile">
+          <div className="profile-cards">
+            {student && student.hasMentor && (
+              <div>
+                <h4>
+                  Your mentor and other students with the same mentor
+                </h4>
+                <RelatedComponet
+                  hasMentor={student.hasMentor}
+                ></RelatedComponet>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className="footer">
         <Footer></Footer>
       </div>
-      <h1>anerico</h1>
-
-
-    
     </div>
   );
 }
@@ -82,6 +83,3 @@ export default Student;
 
 {
 }
-
-// ! your preferences
-
