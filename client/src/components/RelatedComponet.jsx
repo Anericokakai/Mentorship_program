@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { FetchRelations } from "../pages/helpers/homeFetchFunctions";
+import { FetchRelations, startNewChat } from "../pages/helpers/homeFetchFunctions";
+import axios from "axios";
 
 function RelatedComponet({ hasMentor }) {
   // !store student info
@@ -26,7 +27,16 @@ function RelatedComponet({ hasMentor }) {
 
     },[id])
 
+// ! start new chat
+ const startNewChat = async (student_id)=>{
+  try {
+    const response = await axios.post("http://localhost:8001/api/chats/create", {mentor_id: relations?.mentor_id?._id, student_id: student_id})
+    console.log(response.data);
+  } catch (error) {
+    console.log(error);
     
+  }
+}
       
  
 
@@ -51,7 +61,7 @@ function RelatedComponet({ hasMentor }) {
             {relations && relations?.mentor_id?.student}
           </p>
 
-          <button>Chat with your mentor</button>
+          <button >Chat with your mentor</button>
         </div>
       </div>
 
@@ -68,7 +78,7 @@ function RelatedComponet({ hasMentor }) {
                 <strong className="strongs"> Career path:</strong>
                 {single.preference?.join(", ")}
               </p>
-              <button>Chat with {single?.name} </button>
+              <button onClick={()=> startNewChat(single?._id)} >Chat with {single?.name} </button>
 
             </div>
           ))}

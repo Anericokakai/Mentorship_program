@@ -7,6 +7,7 @@ import { connection_to_db } from "./database/connect.js";
 import { matchingDb_collection } from "./database/Schemas/MathingSchema.js";
 import { Add_Prefernces_Routes, FetchStudentInfo, find_studentAmentor, RelationsRoute, update_Students_prefernce, update_student_with_no_mentors } from "./Routes/UpdatesLogic.js";
 import dotenv from 'dotenv'
+import { add_new_message, create_new_chat, get_all_chats, get_chat_messages } from "./Routes/chatRoute.js";
 // ! application 
 const app=express()
 // ! configure the files
@@ -63,6 +64,15 @@ app.use(update_Students_prefernce)
 app.use(send_prefetences)
 
 
+// todo Chat App
+// !get all chats
+app.use(get_all_chats)
+// ! create new chat
+app.use(create_new_chat)
+// ! get specific chat
+app.use(get_chat_messages)
+// ! add new message to chat
+app.use(add_new_message)
 
 
 
