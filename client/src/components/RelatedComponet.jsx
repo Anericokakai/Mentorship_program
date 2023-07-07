@@ -49,7 +49,7 @@ function RelatedComponet({ hasMentor }) {
       </div>
 
       <div className="studentsCpntainer">
-        <strong className="underline"> Students with the same mentor</strong>
+<p className="center2">        <strong className="underline"> Students with the same mentor</strong></p>
         <div className="students">
           {relations && relations?.student_id?.map((single) => (
             <div className="singleStudent">

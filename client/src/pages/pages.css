@@ -314,6 +314,9 @@ background-color: var(--bg);
     .signupcontainer{
    grid-template-rows: 2fr 1fr;
     }
+    .four0four{
+        width: 100%;
+    }
     .preloader{
         top: 0;
     }

@@ -257,6 +257,13 @@
 }
 .underline{
     text-decoration: underline;
+    width: 100%;
+
+}
+.center2{
+    text-align: center;
+    padding-bottom: 1em;
+    font-size: 18px;
 }
 .strongs{
     padding-right:  10px;

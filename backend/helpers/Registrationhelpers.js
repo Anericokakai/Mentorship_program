@@ -81,15 +81,10 @@ export const add_mentor = async (req, res, collection) => {
     // ! check if the student exist
     const userExist = await collection.findOne({ email });
     if (userExist) {
-      return res.json({ error: "user already exists" });
+      return res.json({ error: true,message:'user already exist' });
     } else {
       const hashedPassword = await bcrypt.hash(password, 10)
-      // const data_to_add = {
-      //   email,
-      //   password,
-      //   course,
-      //   preference,
-      // };
+      
       const data_to_add = {
         email: email,
         password: hashedPassword,
@@ -101,9 +96,9 @@ export const add_mentor = async (req, res, collection) => {
 
       const add_mentor = await collection.create(data_to_add);
 
-      if (!add_mentor) return res.json({ error: "failed to add the user" });
+      if (!add_mentor) return res.json({ error: true,message:'failed to add user' });
 
-      res.json({ status: 200, succsess: "user created succsessfully" });
+      res.json({ status: 200, message: "user created succsessfully" });
 
 
       // !give the mentor students that match his prefernce that have no mentors
@@ -171,8 +166,22 @@ export const login_mentor = async (req,res) =>{
 
   const valid_password =  await bcrypt.compare(password, mentor_exists.password);
   if (!valid_password)  return res.json({ error: true, message: "invalid user credentials" });
+  // !create token
+  const token = await jwt.sign({ email: email }, process.env.SECRET, {
+    expiresIn: "60s",
+  });
+  const refreshToken = await jwt.sign({ email: email }, process.env.REFRESH, {
+    expiresIn: "1y",
+  });
 
-  return res.json({ status: 200,  message: "user logged in successfully"})
+  res.json({
+    status: 200,
+    token,
+    refreshToken,
+    message: "User loged in succsessfuly",
+    role: mentor_exists.role,
+    id: mentor_exists._id,
+  });
 
 
 }
@@ -210,27 +219,52 @@ export const handleStudentLogin = async (req, res) => {
 
 // !updates students after selecting the
 export const Add_preference_route_helper = async (req, res) => {
-  const { preference, id } = req.body;
+  const { preference, id ,role} = req.body;
 
-  // !add to db
-  const added = await studentDb_collection.findByIdAndUpdate(
-    id,
-    {
-      $push: { preference: preference },
-    },
-    { new: true }
-  );
-  console.log(added);
-  if (!added)
+  // !check the role
+  if(role=='student'){
+    const added = await studentDb_collection.findByIdAndUpdate(
+      id,
+      {
+        $push: { preference: preference },
+      },
+      { new: true }
+    );
+    console.log(added);
+    if (!added)
+      return res.json({
+        error: true,
+        message: "failed to update your career paths",
+      });
+  
     return res.json({
-      error: true,
-      message: "failed to update your career paths",
+      message:
+        "your career path has been updated ! ,you will be assigned a mentor soon!",
     });
 
-  return res.json({
-    message:
-      "your career path has been updated ! ,you will be assigned a mentor soon!",
-  });
+  }else if(role=='mentor'){
+    const added = await MentorsDb_collection.findByIdAndUpdate(
+      id,
+      {
+        $push: { preference: preference },
+      },
+      { new: true }
+    );
+    console.log(added);
+    if (!added)
+      return res.json({
+        error: true,
+        message: "failed to update your career paths",
+      });
+  
+    return res.json({
+      message:
+        "your career path has been updated ! ,you will be assigned students soon to mentor !",
+    });
+
+
+  }
+ 
 };
 
 // ! find the student a mentor helper function

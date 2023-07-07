@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import "./pages.css";
 import { ToastContainer, toast } from "react-toastify";
-import { handleFormSubmitMentors, handleMentorLogin} from "./helpers/Functions";
+import {
+  handleFormSubmitMentors,
+  handleMentorLogin,
+} from "./helpers/Functions";
+import Preloader from "../components/Preloader";
+import { setId, Setrefreshtoken, Setroles, Settoken } from "../toolkit/slices";
+import { useDispatch } from "react-redux";
 
 function MentorSignup() {
   // ! query selectors
@@ -11,6 +17,7 @@ function MentorSignup() {
   const [loading, setloading] = useState();
   const [login, setlogin] = useState(false);
 
+  const dispatch = useDispatch();
   // !change between sign up and login forms
   function handleChangeForm() {
     if (login === false) {
@@ -20,14 +27,21 @@ function MentorSignup() {
     }
   }
 
+  // !redirect function
+  const redirect=()=>window.location.href='/'
+
+
+
   //   ! handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setloading(true);
     if (!login) {
       await handleFormSubmitMentors(formsInputs)
         .then((response) => {
           // !dismiss loafind
           setloading(false);
+          console.log(response);
           if (response.data.error) {
             toast.error(response.data.message);
           } else {
@@ -50,18 +64,18 @@ function MentorSignup() {
           }
           if (response.data.status == 200) {
             toast.success(response.data.message);
-            // const redirect = (window.location.href = "/dash")
-            // redirect();
+            
             const userToken = response.data.token;
             const refresh = response.data.refreshToken;
             const givenRole = response.data.role;
             const id = response.data.id;
-            //   dispatch(Settoken(userToken));
-            //   dispatch(Setrefreshtoken(refresh));
-            //   dispatch(Setroles(givenRole));
-            //   dispatch(setId(id))
+            dispatch(Settoken(userToken));
+              dispatch(Setrefreshtoken(refresh));
+              dispatch(Setroles(givenRole));
+               dispatch(setId(id));
 
             formsInputs.reset();
+            setTimeout(redirect,5000)
           }
         })
         .catch((error) => {
@@ -83,6 +97,7 @@ function MentorSignup() {
       />
       <div className="signupcontainer">
         <div className="singupForm">
+          {loading && <Preloader></Preloader>}
           <h1>{login ? "Mentor sign in " : "Mentor sign up"}</h1>
           <form action="" className="Form1" onSubmit={handleSubmit}>
             {login === false && (

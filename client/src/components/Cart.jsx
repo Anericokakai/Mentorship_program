@@ -5,7 +5,7 @@ import { newPrefrences } from "../pages/helpers/homeFetchFunctions";
 import { clearCat, removeFromCat } from "../toolkit/slices";
 
 function Cart({ carthide }) {
-  const { prefs ,id} = useSelector((store) => store.userInfo);
+  const { prefs ,id,role} = useSelector((store) => store.userInfo);
 
   const dispatch = useDispatch();
 
@@ -18,7 +18,8 @@ const reload=()=>{
   const sendToBackEnd = () => {
     const values={
       id:id,
-      preference:prefs
+      preference:prefs,
+      role:role
       
     }
     carthide(false)

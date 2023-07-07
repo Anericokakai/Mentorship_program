@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import "./pages.css";
 import { setId, Setrefreshtoken, Setroles, Settoken } from "../toolkit/slices";
 import preloder from "../images/preload.gif";
+import Preloader from "../components/Preloader";
 function Signup() {
   // const { token, refreshToken, role } = useSelector((store) => store.userInfo);
 
@@ -126,9 +127,7 @@ function Signup() {
       <div className="signupcontainer">
         <div className="singupForm">
           {loading && (
-            <div className="preloader">
-              <img src={preloder} alt="" />
-            </div>
+           <Preloader></Preloader>
           )}
           <h1>{login ? "sign in to Mentors.io" : "sign up  to mentors.io"}</h1>
           <form action="" className="Form1" onSubmit={handleForm}>

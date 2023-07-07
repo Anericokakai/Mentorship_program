@@ -8,6 +8,7 @@ import {
   assignMentor_helper,
   Fechprefernces,
   fetchstudentInfo,
+  giveStudentsMentors,
 } from "./helpers/homeFetchFunctions";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -17,18 +18,29 @@ import Cart from "../components/Cart";
 import RelatedComponet from "../components/RelatedComponet";
 function Home() {
   const [student, setstudent] = useState({});
+  const [mentor, setmentor] = useState({});
   const [prerence, setpreferences] = useState([{}]);
   const [showpop, setshowpop] = useState(false);
   const [selectedPref, setSelectedPref] = useState("");
   const [showcart, setshowcat] = useState(false);
   // ! acces redux
-  const { id, token, refreshToken } = useSelector((store) => store.userInfo);
+  const { id, token, refreshToken, role } = useSelector(
+    (store) => store.userInfo
+  );
   if (!token || !refreshToken || !id) {
     window.location.href = "/signup";
   }
+
+  // !refresh function
+  const refresh = () => window.location.reload();
   useEffect(() => {
-    fetchstudentInfo(id)
+    const values = {
+      id: id,
+      role: role,
+    };
+    fetchstudentInfo(values)
       .then((data) => {
+        console.log(data.data);
         setstudent(data.data.studentInfo);
       })
       .catch((error) => {
@@ -50,9 +62,26 @@ function Home() {
     assignMentor_helper(id)
       .then((data) => {
         toast.success(data.data.message);
+        setTimeout(refresh, 5000);
       })
       .catch((error) => {
         toast.error("failed to connect to the server");
+      });
+  };
+
+  // !assign mentors students
+  const Assignstudents = () => {
+    // !call the api to trigger matches
+
+    giveStudentsMentors()
+      .then((data) => {
+        toast.success(data.data.message);
+        console.log(data);
+        setTimeout(refresh, 5000);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("failed to connect");
       });
   };
 
@@ -79,7 +108,7 @@ function Home() {
             <span className="name">{student && student.name}</span>, your
             ultimate platform for mentorship{" "}
           </h1>
-          <h2>Mentor.io connects you with perfect macth </h2>
+          <h2>Mentor.io connects you with perfect mentor </h2>
         </div>
         <div className="illustrator">
           <img src={gif1} alt="" />
@@ -126,24 +155,36 @@ function Home() {
         </div>
       ) : (
         <></>
-        
       )}
-      {student && !student.hasMentor && student?.preference?.length > 0 && (
+      {student &&
+        student.role === "student" &&
+        !student.hasMentor &&
+        student?.preference?.length > 0 && (
+          <div className="requstMentor">
+            <h4>It Seems that you dont have a mentor yet </h4>
+            <p>
+              click here to check if there are mentors with the same preferences
+              as yours
+            </p>
+            <button onClick={AssignMentor} className="btn click">
+              Find Mentor
+            </button>
+          </div>
+        )}
+      {student && student?.preference?.length > 0 && student.student < 1 && (
         <div className="requstMentor">
-          <h4>It Seems that you dont have a mentor yet </h4>
+          <h4>It Seems that you dont have any students yet </h4>
           <p>
-            click here to check if there are mentors with the same preferences
+            click here to check if there are students with the same preferences
             as yours
           </p>
-          <button onClick={AssignMentor} className="btn click">
-            Find Mentor
+          <button onClick={Assignstudents} className="btn click">
+            Find Students
           </button>
         </div>
       )}
 
-      <div>
-        
-      </div>
+      <div></div>
 
       <MoreInfo></MoreInfo>
     </div>

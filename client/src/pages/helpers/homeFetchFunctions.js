@@ -1,9 +1,7 @@
 import axios from "axios";
 
-export const fetchstudentInfo = async (id) => {
-  const result = await axios.post("http://localhost:8001/api/fetchinfo", {
-    id: id,
-  });
+export const fetchstudentInfo = async (values) => {
+  const result = await axios.post("http://localhost:8001/api/fetchinfo", values);
   return result;
 };
 
@@ -42,3 +40,12 @@ export const FetchRelations = async (id) => {
   );
   return result;
 };
+
+
+// !give mentors students with the same prefences
+export const giveStudentsMentors=async()=>{
+
+  const result =await axios.post('http://localhost:8001/api/updatestudentwithnomentors')
+return result
+
+}

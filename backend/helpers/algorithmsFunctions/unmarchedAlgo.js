@@ -73,7 +73,7 @@ export   async function map_unmathedStudents(req,res){
 
   console.log(bestMatch)
   // ! if the score is zero dont continue as no mentor mathes the students
-  if(bestMatch[0].scores<1) return 'mentors did not match the stydents prefernces'
+  if(bestMatch[0].scores<1) return 'your selected prefernces does not match any of the available students,you will be assigned soon !'
   // ! check if the first mentor mentor is in the match collection
   const bestFitMentor_id=bestMatch[0].mentorId
   const mentor_is_inMatch_collection=await matchingDb_collection.findOne({mentor_id:bestFitMentor_id})
@@ -90,7 +90,7 @@ export   async function map_unmathedStudents(req,res){
       await  updateMentorStudents(bestFitMentor_id)
       await studentHasMentor(student)
 
- return 'students have been mathes to their mentors'
+ return 'congratulations ! you have been assigned students to mentor '
       
     } catch (error) {
       
@@ -110,12 +110,12 @@ export   async function map_unmathedStudents(req,res){
 await  updateMentorStudents(bestFitMentor_id)
 await studentHasMentor(student)
 
- return 'students have been mathes to their mentors'
+ return 'congratulations ! you have been assigned students to mentor '
   }
  
 
 } else{
-  return 'no mentors are available'
+  return 
 }
 
 }
