@@ -8,7 +8,8 @@ import MentorSignup from "../pages/MentorSignup";
 import PageNotFound from "../pages/PageNotFound";
 
 export const routes = [
-  { element: <Signup></Signup>, path: "/signup" },
+  { element: <Signup></Signup>,
+   path: "/signup" },
   {
     element: <Home></Home>,
     path: "/",

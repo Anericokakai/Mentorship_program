@@ -33,7 +33,7 @@ function Student() {
         <div className="welcome">
           <div className="welcome-text">
             <h1>
-              Good Evening, <span>{student.name}</span>
+              Good Evening, <span>{student?.name}</span>
             </h1>
           </div>
         </div>
@@ -57,13 +57,13 @@ function Student() {
         </div>
         <div className="mentor-profile">
           <div className="profile-cards">
-            {student && student.hasMentor && (
+            {student && student?.hasMentor && (
               <div>
                 <h4>
                   Your mentor and other students with the same mentor
                 </h4>
                 <RelatedComponet
-                  hasMentor={student.hasMentor}
+                  hasMentor={student?.hasMentor}
                 ></RelatedComponet>
               </div>
             )}

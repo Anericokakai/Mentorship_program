@@ -24,7 +24,7 @@ function RelatedComponet({ hasMentor }) {
   }, [id]);
 
   console.log(relations);
-  console.log(relations?.mentor_id.role);
+  console.log(relations?.mentor_id?.role);
   return (
     <div className="menteesInformation">
       <div className="mentor">
