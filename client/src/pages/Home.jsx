@@ -16,6 +16,7 @@ import { toast, ToastContainer } from "react-toastify";
 import PopUp from "../components/PopUp";
 import Cart from "../components/Cart";
 import RelatedComponet from "../components/RelatedComponet";
+import Footer from "./Footer";
 function Home() {
   const [student, setstudent] = useState({});
   const [mentor, setmentor] = useState({});
@@ -187,6 +188,7 @@ function Home() {
       <div></div>
 
       <MoreInfo></MoreInfo>
+      <Footer></Footer>
     </div>
   );
 }

@@ -19,7 +19,7 @@ function PopUp({hide,pref}) {
   
         <i class="fa-solid fa-circle-xmark" onClick={()=>hide(false)}></i>
       </p>
-      <h1>Do You Want To Add to your career ?</h1>
+      <h3>Do You Want To Add {pref} to your career ?</h3>
       <div className="buttons">
         <button className=" buttns cancel" onClick={()=>hide(false)}>  cancel</button>
         <button className="buttns accept" onClick={AddToCart}>Add</button>

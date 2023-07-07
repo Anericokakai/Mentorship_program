@@ -292,15 +292,27 @@ export const FindStudentAmentor_helper_function = async (req, res) => {
 export const HansdleRelationLogic=async(req,res)=>{
 
   // ! fetch the related data
-const {id}=req.body
+const {id ,role}=req.body
 console.log(req.body)
-        const results = await matchingDb_collection
-          .find({student_id:id})
-          .populate("student_id")
-          .populate("mentor_id")
-          .exec();
-          if(!results)return res.json({error:true,message:'failed to retrieve collection'})
-          res.json(results)
+if(role=='student'){
+  const results = await matchingDb_collection
+  .find({student_id:id})
+  .populate("student_id")
+  .populate("mentor_id")
+  .exec();
+  if(!results)return res.json({error:true,message:'failed to retrieve collection'})
+  res.json({info: results})
+
+} else if (role=='mentor'){
+  const results = await matchingDb_collection
+  .find({mentor_id:id})
+  .populate("student_id")
+  .populate("mentor_id")
+  .exec();
+  if(!results)return res.json({error:true,message:'failed to retrieve collection'})
+  res.json({info: results})
+}
+       
         
     
     }

@@ -9,21 +9,28 @@ function RelatedComponet({ hasMentor }) {
   // !store student info
   const [relations, setrelations] = useState({});
   // ! const id
-  const { id } = useSelector((store) => store.userInfo);
-  useEffect(() => {
+  const { id ,role} = useSelector((store) => store.userInfo);
+ 
     const values = {
       id: id,
+      role:role
     };
-    if (hasMentor) {
+    
+    useEffect(()=>{
       FetchRelations(values)
         .then((data) => {
-          setrelations(data.data[0]);
+          console.log(data?.data?.info)
+          setrelations(data?.data.info[0]);
         })
         .catch((error) => toast.error("failed to connect"));
-    }
-  }, [id]);
 
-  console.log(relations);
+    },[id])
+
+    
+      
+ 
+
+  console.log(relations[0]);
   console.log(relations?.mentor_id?.role);
   return (
     <div className="menteesInformation">

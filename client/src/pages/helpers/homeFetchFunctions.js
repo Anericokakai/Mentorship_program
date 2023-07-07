@@ -33,10 +33,10 @@ export const assignMentor_helper = async (id) => {
 };
 
 // ! fetch relations
-export const FetchRelations = async (id) => {
+export const FetchRelations = async (values) => {
   const result = await axios.post(
     "http://localhost:8001/api/students/relations",
-    id
+    values
   );
   return result;
 };
