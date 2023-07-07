@@ -13,6 +13,9 @@
     --txtOne:#edf6f9;
     --boldDarkText:#1a659e;
     --boxshadow:rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  
+    
+   
 
 
 }
@@ -200,7 +203,7 @@
 .mentor{
  
     border-radius: 10px;
-    background-color: var(--bg);
+    background-color: var(--clearWhite);
     line-height: 2em;
     padding: 1em;
     box-shadow: var(--boxshadow);
@@ -231,7 +234,7 @@
 }
 
 .singleStudent{
-    background-color: var(--bg);
+    background-color: var(--clearWhite);
     min-height: 90px;
     border-radius: 10px;
     box-shadow: var(--boxshadow);
@@ -258,6 +261,49 @@
 .strongs{
     padding-right:  10px;
 }
+
+
+/* !tranfer of students css to here */
+
+  .students-dash {
+    background-color:var(--bg);
+  }
+  .navbar {
+  
+    background-color: white;
+  }
+  .welcome-text {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .single {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    gap: 1em;
+  }
+  .single h3 {
+    font-size: 30px;
+    text-align: center;
+  }
+  .single button {
+    padding: 8px 12px;
+    /* margin-top: 50px; */
+    cursor: pointer;
+    color: #98c1d9;
+    background-color: #293241;
+    border: none;
+    border-radius: 10px;
+  }
+  .single button:hover {
+    background-color: #1a659e;
+  }
+  .profile-cards {
+    padding: 8px;
+  }
+  /*!end of students css  */
 
 @media (max-width:520px) {
     .naviagtion1 ul{

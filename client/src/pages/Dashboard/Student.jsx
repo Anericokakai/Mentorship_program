@@ -1,5 +1,5 @@
 import React from "react";
-import "./student.css";
+
 import Naviagtion from "../../components/Naviagtion";
 import Studentcard from "./components/Studentcard";
 import Footer from "../Footer";
@@ -8,9 +8,12 @@ import { useSelector, UseSelector } from "react-redux/es/hooks/useSelector";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import RelatedComponet from "../../components/RelatedComponet";
+import { useEffect } from "react";
+
 function Student() {
   // !user infos
   const [student, setstudent] = useState({});
+  const[time,settime]=useState('')
   const { id } = useSelector((store) => store.userInfo);
 
   useState(() => {
@@ -23,7 +26,29 @@ function Student() {
       });
   }, [id]);
   console.log(student);
-  console.log(student.hasMentor);
+  console.log(student?.hasMentor);
+
+  useEffect(()=>{
+
+
+     // !greeting hours
+  const date=new Date()
+  const current_time=date.getHours()
+  console.log(current_time)
+   if(current_time>5&& current_time<=12){
+     settime('Morning')
+   }else if(current_time>12 && current_time<=18){
+     settime('Afternoon')
+   }else if (current_time>18 && current_time<=22){
+    settime('Evening')
+   }else if(current_time>22 && current_time<=5){
+    settime('Night')
+   }
+  }
+  
+  
+  ,[])
+ 
   return (
     <div className="students-dash">
       <div className="container-dash">
@@ -33,7 +58,7 @@ function Student() {
         <div className="welcome">
           <div className="welcome-text">
             <h1>
-              Good Evening, <span>{student?.name}</span>
+              Good {time},  <span>{student?.name}</span>
             </h1>
           </div>
         </div>
