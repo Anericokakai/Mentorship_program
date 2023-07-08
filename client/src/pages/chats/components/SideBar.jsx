@@ -9,11 +9,7 @@ function SideBar() {
     <Navbar></Navbar>
     <Search></Search>
     <Chat></Chat>
-    <Chat></Chat>
-    <Chat></Chat>
-    <Chat></Chat>
-    <Chat></Chat>
-    <Chat></Chat>
+   
     
 
 

@@ -226,16 +226,58 @@
     }
   }
 
-  .search-result {
-    padding: 10px;
+  .chat {
+    padding: 5px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 10px;
-    color: white;
     cursor: pointer;
 
-    &:hover {
-      background-color: #00000055;
+   
+
+    .mentor-info-cot{
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      color: white;
+
+      &:hover {
+        background-color: #00000055;
+      }
+
+      span{
+        font-size: 18px;
+      }
+      p{
+        font-size: 12px;
+        font-weight: 300;
+        color: lightgray;
+      }
+
+      .mentor-cont{
+        span{
+          font-size: 18px;
+        }
+        p{
+          font-size: 12px;
+          font-weight: 300;
+          color: lightgray;
+        }
+      }
+    
+    }
+    .search-result{
+     
+      .other-students{
+        display: flex;
+        gap: 10px;
+      align-items: center;
+      color: white;
+
+      &:hover {
+        background-color: #00000055;
+      }
+      }
     }
 
     img {
