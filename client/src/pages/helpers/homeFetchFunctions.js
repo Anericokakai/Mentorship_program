@@ -1,13 +1,16 @@
 import axios from "axios";
 
 export const fetchstudentInfo = async (values) => {
-  const result = await axios.post("http://localhost:8001/api/fetchinfo", values);
+  const result = await axios.post(
+    "https://mentorship-program.onrender.com/api/fetchinfo",
+    values
+  );
   return result;
 };
 
 export const Fechprefernces = async () => {
   const result = await axios.get(
-    "http://localhost:8001/api/students/send-pref"
+    "https://mentorship-program.onrender.com/api/students/send-pref"
   );
   return result;
 };
@@ -15,7 +18,7 @@ export const Fechprefernces = async () => {
 // !submit new prefernces
 export const newPrefrences = async (values) => {
   const results = await axios.post(
-    "http://localhost:8001/api/students/addprefernces",
+    "https://mentorship-program.onrender.com/api/students/addprefernces",
     values
   );
   return results;
@@ -24,7 +27,7 @@ export const newPrefrences = async (values) => {
 // !assign student a mentor
 export const assignMentor_helper = async (id) => {
   const results = await axios.post(
-    "http://localhost:8001/api/students/findamentor",
+    "https://mentorship-program.onrender.com/api/students/findamentor",
     {
       id: id,
     }
@@ -35,17 +38,16 @@ export const assignMentor_helper = async (id) => {
 // ! fetch relations
 export const FetchRelations = async (values) => {
   const result = await axios.post(
-    "http://localhost:8001/api/students/relations",
+    "https://mentorship-program.onrender.com/api/students/relations",
     values
   );
   return result;
 };
 
-
 // !give mentors students with the same prefences
-export const giveStudentsMentors=async()=>{
-
-  const result =await axios.post('http://localhost:8001/api/updatestudentwithnomentors')
-return result
-
-}
+export const giveStudentsMentors = async () => {
+  const result = await axios.post(
+    "https://mentorship-program.onrender.com/api/updatestudentwithnomentors"
+  );
+  return result;
+};

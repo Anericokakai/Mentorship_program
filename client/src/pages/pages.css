@@ -181,6 +181,7 @@ color: var(--clearWhite);
     background-color: var(--bg);
     grid-template-columns: 1fr 1fr;
     gap: 1em;
+    min-height: 100vh;
     padding: 1em;
     position: relative;
     place-content: center;
@@ -309,6 +310,10 @@ background-color: var(--bg);
 .strongsColor{
     color: #000814;
 }
+.textrev{
+    opacity: 1;
+}
+
 
 @media (max-width:640px) {
     .signupcontainer{
@@ -384,4 +389,20 @@ background-color: var(--bg);
  }
  .medium{
     color: var(--lightOrange);
+ }
+
+ .landing_conatiner{
+    height: 100vh;
+    scroll-snap-type: y ;
+    overflow-y: scroll;
+    transition: 1s;
+ }
+ .snap{
+    min-height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+
+ }
+ .snap:snapped{
+    transition: 1s;
  }

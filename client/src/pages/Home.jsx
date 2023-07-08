@@ -17,6 +17,8 @@ import PopUp from "../components/PopUp";
 import Cart from "../components/Cart";
 import RelatedComponet from "../components/RelatedComponet";
 import Footer from "./Footer";
+import Extras from "../components/Extras";
+import ScrollReveal from "scrollreveal";
 function Home() {
   const [student, setstudent] = useState({});
   const [mentor, setmentor] = useState({});
@@ -32,6 +34,7 @@ function Home() {
     window.location.href = "/signup";
   }
 
+  ScrollReveal({ reset: true });
   // !refresh function
   const refresh = () => window.location.reload();
   useEffect(() => {
@@ -91,9 +94,14 @@ function Home() {
     setshowpop(true);
     setSelectedPref(pref);
   };
+
+  // !scroll reveals
+
+
   return (
     <div className="landing_conatiner">
-      <ToastContainer
+     <section className="snap">
+     <ToastContainer
         position={"top-center"}
         closeOnClick={false}
         pauseOnHover={false}
@@ -102,9 +110,9 @@ function Home() {
         autoClose={3000}
       />
       <Naviagtion></Naviagtion>
-      <div className="landingPage">
+      <div className="landingPage snap">
         <div className="content">
-          <h1>
+          <h1 className="textrev">
             Welcome to Mentor .io{" "}
             <span className="name">{student && student.name}</span>, your
             ultimate platform for mentorship{" "}
@@ -115,9 +123,11 @@ function Home() {
           <img src={gif1} alt="" />
         </div>
       </div>
+     </section>
+
       {/* Available prefences */}
       {student && student?.preference?.length < 1 ? (
-        <div>
+        <section  className="snap">
           <h2>What are you intrested in ?</h2>
 
           <div className="prefences">
@@ -153,7 +163,7 @@ function Home() {
               ></i>
             </div>
           </div>
-        </div>
+        </section>
       ) : (
         <></>
       )}
@@ -185,9 +195,16 @@ function Home() {
         </div>
       )}
 
-      <div></div>
+     
 
-      <MoreInfo></MoreInfo>
+   <section className="snap">
+   <MoreInfo></MoreInfo>
+   </section>
+
+<section className="snap">
+<Extras></Extras>
+</section>
+
       <Footer></Footer>
     </div>
   );

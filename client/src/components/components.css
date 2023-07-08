@@ -99,11 +99,7 @@
     padding-right: 1em;
 }
 
-.imageInfo img{
-    width: 100%;
-    border-top-right-radius: 60px;
-    box-shadow: var(--boxshadow);
-}
+
 .infoDescription{
     display: grid;
     place-content: center;
@@ -292,7 +288,7 @@
     gap: 1em;
   }
   .single h3 {
-    font-size: 30px;
+    font-size: 20px;
     text-align: center;
   }
   .single button {
@@ -312,6 +308,17 @@
   }
   /*!end of students css  */
 
+ .extras_container{
+    display: grid;
+ }
+ .extrasImage img{
+    width: 100%;
+ }
+ .descriptions{
+    display: grid;
+    place-content: center;
+ }
+
 @media (max-width:520px) {
     .naviagtion1 ul{
         width: 80%;
@@ -319,6 +326,7 @@
     .menteesInformation{
         grid-template-columns: 1fr;
     }
+
    
     .me
 
@@ -341,6 +349,12 @@
 }
 @media (min-width:520px) {
     .menteesInformation{
+        grid-template-columns: 1fr 1fr;
+    }
+    .imagecont{
+        grid-template-columns: 1fr 1fr;
+    }
+    .extras_container{
         grid-template-columns: 1fr 1fr;
     }
     

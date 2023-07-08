@@ -20,7 +20,7 @@ export const SubmitPrefence = async (form) => {
   console.log(obj);
 
   const send = await axios.post(
-    "http://localhost:8001/api/students/preferences",
+    "https://mentorship-program.onrender.com/api/students/preferences",
     obj
   );
 
