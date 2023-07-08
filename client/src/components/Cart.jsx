@@ -1,21 +1,30 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { newPrefrences } from "../pages/helpers/homeFetchFunctions";
 import { clearCat, removeFromCat } from "../toolkit/slices";
 
 function Cart({ carthide }) {
-  const { prefs ,id,role} = useSelector((store) => store.userInfo);
+  const { prefs ,id,role,loged} = useSelector((store) => store.userInfo);
 
   const dispatch = useDispatch();
-
+const navigate=useNavigate()
   
 const reload=()=>{
    return window.location.reload()
 
 }
+
+const redirect=()=>       navigate('/signup',{replace:true})
   //   ! submit the prefernces
   const sendToBackEnd = () => {
+
+    if(!id||!loged){
+      toast.success('login in order to submit your preferences')
+      setTimeout(redirect,4000)
+      
+ }
     const values={
       id:id,
       preference:prefs,

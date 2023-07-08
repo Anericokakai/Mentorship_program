@@ -23,7 +23,21 @@
   @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:ital,wght@0,400;0,500;1,300;1,400&family=Nova+Mono&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
 
 
+body::-webkit-scrollbar{
+    display: none;
+    
+}
 
+/* !preloaders */
+.loading img{
+    width: 90px;
+
+}
+.loading{
+    height: 95vh;
+    display: grid;
+    place-content: center;
+}
 
 /* ! signup page */
 .signupcontainer{
@@ -97,6 +111,9 @@
 line-height: 1em;
 
 }
+
+
+
 /* ! general buttons */
 .btn{
     padding: 10px 15px;
@@ -124,6 +141,9 @@ color: var(--clearWhite);
 .signupsbtn:hover{
     color: var(--darkBlue);
     background-color: var(--txtOne);
+}
+.textrev{
+    font-size: 40px;
 }
 
 
@@ -186,6 +206,17 @@ color: var(--clearWhite);
     position: relative;
     place-content: center;
 }
+.preference1{
+    min-height: 20vh;
+    display: grid;
+    background-color: var(--bg);
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+
+    padding: 1em;
+    position: relative;
+    place-content: center;
+ }
 .single{
     width: 100%;
     background-color: var(--clearWhite);
@@ -322,6 +353,9 @@ background-color: var(--bg);
     .four0four{
         width: 100%;
     }
+    .textrev{
+        font-size: 25px;
+    }
     .preloader{
         top: 0;
     }
@@ -330,7 +364,7 @@ background-color: var(--bg);
         padding-top: 2em;
     }
     .landingPage{
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: 2fr 1fr;
     }
     .content h1{
         font-size: 25px;
@@ -353,6 +387,7 @@ background-color: var(--bg);
 .fa-plus:hover{
     color: #1a659e;
 }
+
 
 
 @media (min-width:640px) {
@@ -393,12 +428,12 @@ background-color: var(--bg);
 
  .landing_conatiner{
     height: 100vh;
-    scroll-snap-type: y ;
+    scroll-snap-type: y  mandatory;
     overflow-y: scroll;
     transition: 1s;
  }
  .snap{
-    min-height: 100vh;
+    min-height: 80vh;
     scroll-snap-align: start;
     scroll-snap-stop: always;
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import "./components.css";
 function Naviagtion() {
@@ -13,6 +14,7 @@ function Naviagtion() {
       setshow(false);
     }
   };
+  const { loged } = useSelector((store) => store.userInfo);
 
   const CustomLink = (props) => {
     return (
@@ -25,7 +27,7 @@ function Naviagtion() {
     );
   };
   return (
-    <nav className={`naviagtion1 ${show && 'shownav'}`}>
+    <nav className={`naviagtion1 ${show && "shownav"}`}>
       <div className="logo">
         <h1>mentor.io</h1>
       </div>
@@ -36,18 +38,27 @@ function Naviagtion() {
           {" "}
           <CustomLink to={"/"}>Home</CustomLink>
         </li>
+
         <li>
-          {" "}
-          <CustomLink to={"/dashboard"}>dashboard</CustomLink>
-        </li>
-        <li>
-          {" "}
           <CustomLink to={"/mentors"}>Mentors</CustomLink>
         </li>
-        <li>
-          {" "}
-          <CustomLink to={"/chat"}>chat room</CustomLink>
-        </li>
+   {
+    loged &&   <li>
+    <CustomLink to={"/dashboard"}>dashboard</CustomLink>
+  </li>
+   }
+ {
+  loged &&  <li>
+  <CustomLink to={"/chat"}>chat room</CustomLink>
+</li>
+
+ }
+ {
+
+  !loged&& <li><CustomLink to='/signup'> sign up</CustomLink></li> 
+ }
+
+<li><CustomLink to='/signup'> sign out</CustomLink></li> 
       </ul>
     </nav>
   );

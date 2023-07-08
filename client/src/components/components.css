@@ -310,6 +310,8 @@
 
  .extras_container{
     display: grid;
+    place-content: center;
+    margin-top: 2em;
  }
  .extrasImage img{
     width: 100%;
@@ -318,6 +320,7 @@
     display: grid;
     place-content: center;
  }
+
 
 @media (max-width:520px) {
     .naviagtion1 ul{
@@ -347,18 +350,7 @@
     
     
 }
-@media (min-width:520px) {
-    .menteesInformation{
-        grid-template-columns: 1fr 1fr;
-    }
-    .imagecont{
-        grid-template-columns: 1fr 1fr;
-    }
-    .extras_container{
-        grid-template-columns: 1fr 1fr;
-    }
-    
-}
+
 @media (min-width:900px) {
     .naviagtion1 ul{
         gap: 5em;
@@ -373,6 +365,14 @@
     .students{
         grid-template-columns: 1fr 1fr;
     }
+ 
+    .imagecont{
+        grid-template-columns: 1fr 1fr;
+    }
+    .extras_container{
+        grid-template-columns: 1fr 1fr;
+    }
+    
     
 }
 @media (min-width:1200px) {

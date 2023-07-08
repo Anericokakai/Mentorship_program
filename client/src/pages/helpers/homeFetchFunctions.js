@@ -48,13 +48,13 @@ export const FetchRelations = async (values) => {
 
 export const giveStudentsMentors=async()=>{
 
-  const result =await axios.post('http://localhost:8001/api/updatestudentwithnomentors')
+  const result =await axios.post('https://mentorship-program.onrender.com/api/updatestudentwithnomentors')
 return result
 
 }
-export const giveStudentsMentors = async () => {
-  const result = await axios.post(
-    "https://mentorship-program.onrender.com/api/updatestudentwithnomentors"
-  );
-  return result;
+// export const giveStudentsMentors = async () => {
+//   const result = await axios.post(
+//     "https://mentorship-program.onrender.com/api/updatestudentwithnomentors"
+//   );
+//   return result;
 

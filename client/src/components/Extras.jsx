@@ -8,7 +8,7 @@ function Extras() {
     <div className="extras_container snap">
       
       <div className="descriptions">
-        <h1> "Unlock Your Potential with Expert Guidance"</h1>
+        <h1 className="textrev"> "Unlock Your Potential with Expert Guidance"</h1>
         <p>
         Experience personal and professional growth through the guidance of our seasoned mentors, tailored to your unique needs and aspirations
         </p>
