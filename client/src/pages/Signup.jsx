@@ -8,9 +8,10 @@ import {
 } from "./helpers/Functions";
 import { useDispatch } from "react-redux";
 import "./pages.css";
-import { setId, Setrefreshtoken, Setroles, Settoken } from "../toolkit/slices";
+import { setId, setloged, Setrefreshtoken, Setroles, Settoken } from "../toolkit/slices";
 import preloder from "../images/preload.gif";
 import Preloader from "../components/Preloader";
+import { useNavigate } from "react-router-dom";
 function Signup() {
   // const { token, refreshToken, role } = useSelector((store) => store.userInfo);
 
@@ -43,13 +44,16 @@ function Signup() {
   }
   // ! redirect function
   // todo REUSABLES
+  const naviaget=useNavigate()
   const redirect = () => {
-    return (window.location.href = "/");
+    
+    return naviaget('/dashboard',{replace:true})
   };
 
   // !handle change of form
   const handleForm = async (e) => {
     setloading(true);
+    
 
     e.preventDefault();
     if (!login) {
@@ -64,6 +68,8 @@ function Signup() {
             formsInputs.reset();
             setlogin(true);
           }
+
+          setcheckpass('')
         })
         .catch((error) => {
           toast.error(error);
@@ -87,6 +93,7 @@ function Signup() {
             dispatch(Setrefreshtoken(refresh));
             dispatch(Setroles(givenRole));
             dispatch(setId(id));
+            dispatch(setloged())
 
             formsInputs.reset();
 
