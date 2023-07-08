@@ -40,7 +40,7 @@ function RelatedComponet({ hasMentor }) {
       
  
 
-  console.log(relations[0]);
+ 
   console.log(relations?.mentor_id?.role);
   return (
     <div className="menteesInformation">

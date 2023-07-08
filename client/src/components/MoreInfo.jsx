@@ -1,10 +1,21 @@
 import React from 'react'
-import image1 from '../images/img.jpg'
+
+import four from '../images/2.svg'
+
+
 function MoreInfo() {
   return (
-    <div className='container_more_info'>
+    <div className='container_more_info snap'>
         <div className="imageInfo">
-            <img src={image1} alt="" />
+           <div className="imagecont">
+            
+           
+            <div className="newimagecont">
+             <img src={four} alt="" />
+             </div>
+          
+
+           </div>
         </div>
         <div className="infoDescription">
 
@@ -15,7 +26,7 @@ function MoreInfo() {
             </div>
             <div className="mission">
                <h3>Our vision</h3>
-               <p>Our vision is to create a thriving community of mentors and mentees, fostering a culture of knowledge sharing, skill development, and personal growth. We aim to empower individuals to navigate their career paths with confidence and make meaningful contributions to society.</p>
+               <p>Our vision is to create a thriving community of mentors and mentees, fostering a culture of knowledge sharing, skill development, and personal growth. </p>
 
             </div>
            

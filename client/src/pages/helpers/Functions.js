@@ -25,7 +25,7 @@ export const handleformSubmitForSignUp = async (form) => {
   };
   console.log(obj);
   const response = await axios.post(
-    "http://localhost:8001/api/students/register",
+    "https://mentorship-program.onrender.com/api/students/register",
     obj
   );
   return response;
@@ -45,7 +45,7 @@ export async function handleLoginForStudents(form) {
   };
   console.log(obj);
   const response = await axios.post(
-    "http://localhost:8001/api/students/login",
+    "https://mentorship-program.onrender.com/api/students/login",
     obj
   );
   return response;
@@ -83,7 +83,7 @@ export const handleFormSubmitMentors = async (form) => {
   };
   console.log(obj);
   const response = await axios.post(
-    "http://localhost:8001/api/mentors/register",
+    "https://mentorship-program.onrender.com/api/mentors/register",
     obj
   );
   return response;
@@ -102,7 +102,7 @@ export const handleMentorLogin = async (form) => {
   };
   console.log(obj);
   const response = await axios.post(
-    "http://localhost:8001/api/mentors/login",
+    "https://mentorship-program.onrender.com/api/mentors/login",
     obj
   );
   return response;
