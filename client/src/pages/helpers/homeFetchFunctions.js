@@ -45,9 +45,16 @@ export const FetchRelations = async (values) => {
 };
 
 // !give mentors students with the same prefences
+
+export const giveStudentsMentors=async()=>{
+
+  const result =await axios.post('http://localhost:8001/api/updatestudentwithnomentors')
+return result
+
+}
 export const giveStudentsMentors = async () => {
   const result = await axios.post(
     "https://mentorship-program.onrender.com/api/updatestudentwithnomentors"
   );
   return result;
-};
+

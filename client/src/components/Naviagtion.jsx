@@ -46,7 +46,7 @@ function Naviagtion() {
         </li>
         <li>
           {" "}
-          <CustomLink to={"/chatroom"}>chat room</CustomLink>
+          <CustomLink to={"/chat"}>chat room</CustomLink>
         </li>
       </ul>
     </nav>
