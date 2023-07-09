@@ -4,15 +4,18 @@ import Naviagtion from "../../components/Naviagtion";
 import Studentcard from "./components/Studentcard";
 import Footer from "../Footer";
 import {
+  assignMentor_helper,
   FetchRelations,
   fetchstudentInfo,
+  giveStudentsMentors,
 } from "../helpers/homeFetchFunctions";
 import { useSelector, UseSelector } from "react-redux/es/hooks/useSelector";
 import { useState } from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import RelatedComponet from "../../components/RelatedComponet";
 import { useEffect } from "react";
 import loadingimg from "../../images/preload.gif";
+import { Link } from "react-router-dom";
 function Student() {
   // !user infos
   const [student, setstudent] = useState({});
@@ -38,6 +41,17 @@ function Student() {
   }, [id]);
 
   // ! const id
+  const refresh = () => window.location.reload();
+  const AssignMentor = () => {
+    assignMentor_helper(id)
+      .then((data) => {
+        toast.success(data.data.message);
+        setTimeout(refresh, 4000);
+      })
+      .catch((error) => {
+        toast.error("failed to connect to the server");
+      });
+  };
 
   useEffect(() => {
     // !greeting hours
@@ -56,9 +70,34 @@ function Student() {
 
     console.log(current_time);
   }, []);
+  console.log(student);
+
+    // !assign mentors students
+    const Assignstudents = () => {
+      // !call the api to trigger matches
+  
+      giveStudentsMentors()
+        .then((data) => {
+          toast.success(data.data.message);
+          console.log(data);
+          setTimeout(refresh, 5000);
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error("failed to connect");
+        });
+    };
 
   return (
     <main>
+      <ToastContainer
+        position={"top-center"}
+        closeOnClick={false}
+        pauseOnHover={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        autoClose={3000}
+      />
       {!loading ? (
         <div className="loading">
           {" "}
@@ -80,28 +119,82 @@ function Student() {
             {/*         // ! your preferences
              */}
             <div>
-              <h2>Your preferences : </h2>
+              <h2>Your career path : </h2>
               {/* prefences */}
               <div className="prefences preference1">
-                {student &&
+                {student?.preference.length > 0 ? (
                   student?.preference?.map((single) => (
                     <div className="single">
                       <h3>{single}</h3>
                       <button>See {single} courses </button>
                     </div>
-                  ))}
+                  ))
+                ) : (
+                  <div className="warning">
+                    <h3>
+                      you have not selected any of the vailable career paths{" "}
+                    </h3>
+                    <p>
+                      click{" "}
+                      <Link className="linkto" to={"/"}>
+                        here
+                      </Link>{" "}
+                      to select a career path and add them to cart , remeber to
+                      submit the cart
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
             <div className="mentor-profile">
               <div className="profile-cards">
-                {
+                {student && student.role === "student" && student.hasMentor ? (
                   <div>
                     <h4>Your mentor and other students with the same mentor</h4>
                     <RelatedComponet
                       hasMentor={student?.hasMentor}
                     ></RelatedComponet>
                   </div>
-                }
+                ) : (
+                  student &&
+                  student.role === "student" && (
+                    <div>
+                      <h3 className="center2">
+                        Looks like you have not been asigned a mentor ,{" "}
+                      </h3>
+                      <p className="center2">
+                        {" "}
+                        <button className="btn click" onClick={AssignMentor}>
+                          Find a mentor
+                        </button>
+                      </p>
+                    </div>
+                  )
+                )}
+
+{student && student.role === "mentor" && student.hasMentor ? (
+                  <div>
+                    <h4>students that you will be mentoring</h4>
+                    <RelatedComponet
+                      hasMentor={student?.hasMentor}
+                    ></RelatedComponet>
+                  </div>
+                ) : (
+                  student &&
+                  student.role === "mentor" && (
+                    <div>
+                      <h3 className="center2">
+                        Looks like you have not been asigned any students ,
+                      </h3>
+                      <p className="center2">
+                        {" "}
+                        <button className="btn click" onClick={Assignstudents}>
+                          Find students 
+                        </button>
+                      </p>
+                    </div>
+                  )
+                )}
               </div>
             </div>
           </div>

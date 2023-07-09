@@ -20,6 +20,7 @@ import Footer from "./Footer";
 import Extras from "../components/Extras";
 import ScrollReveal from "scrollreveal";
 import loading from "../images/preload.gif";
+import Blogs from "../components/Blogs";
 function Home() {
   const [student, setstudent] = useState({});
   const [mentor, setmentor] = useState({});
@@ -216,8 +217,12 @@ function Home() {
           <section className="snap">
             <Extras></Extras>
           </section>
+      
+          <Blogs></Blogs>
+        
         </div>
       )}
+      
 
       <Footer></Footer>
     </main>

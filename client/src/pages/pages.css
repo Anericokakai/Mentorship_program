@@ -201,7 +201,7 @@ color: var(--clearWhite);
     background-color: var(--bg);
     grid-template-columns: 1fr 1fr;
     gap: 1em;
-    min-height: 100vh;
+  
     padding: 1em;
     position: relative;
     place-content: center;
@@ -343,6 +343,8 @@ background-color: var(--bg);
 }
 .textrev{
     opacity: 1;
+    color: #0d1b2a;
+    font-size: 27px;
 }
 
 
@@ -425,19 +427,5 @@ background-color: var(--bg);
  .medium{
     color: var(--lightOrange);
  }
+ 
 
- .landing_conatiner{
-    height: 100vh;
-    scroll-snap-type: y  mandatory;
-    overflow-y: scroll;
-    transition: 1s;
- }
- .snap{
-    min-height: 80vh;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-
- }
- .snap:snapped{
-    transition: 1s;
- }
