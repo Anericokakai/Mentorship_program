@@ -125,7 +125,7 @@ function Home() {
             <Naviagtion></Naviagtion>
             <div className="landingPage snap">
               <div className="content">
-                <h1 className="textrev">
+                <h1 className="textbold">
                   Welcome to Mentor .io{" "}
                   <span className="name">{student && student.name}</span>, your
                   ultimate platform for mentorship{" "}
@@ -146,7 +146,11 @@ function Home() {
               <div className="prefences">
                 {showpop && (
                   <div className="popUpContainer">
-                    <PopUp hide={setshowpop} pref={selectedPref}></PopUp>
+                    <PopUp
+                      hide={setshowpop}
+                      showcat={setshowcat}
+                      pref={selectedPref}
+                    ></PopUp>
                   </div>
                 )}
                 {prerence &&
@@ -161,7 +165,12 @@ function Home() {
                       </p>
                       <i
                         class="fa-sharp fa-solid fa-plus"
-                        onClick={() => addtocart(single?.preference)}
+                        onClick={() => {
+                          addtocart(single?.preference);
+                        if(setshowcat){
+                          setshowcat(false)
+                        }
+                        }}
                       ></i>
                     </div>
                   ))}
@@ -180,35 +189,6 @@ function Home() {
           ) : (
             <></>
           )}
-          {student &&
-            student.role === "student" &&
-            !student.hasMentor &&
-            student?.preference?.length > 0 && (
-              <div className="requstMentor">
-                <h4>It Seems that you dont have a mentor yet </h4>
-                <p>
-                  click here to check if there are mentors with the same
-                  preferences as yours
-                </p>
-                <button onClick={AssignMentor} className="btn click">
-                  Find Mentor
-                </button>
-              </div>
-            )}
-          {student &&
-            student?.preference?.length > 0 &&
-            student.student < 1 && (
-              <div className="requstMentor">
-                <h4>It Seems that you dont have any students yet </h4>
-                <p>
-                  click here to check if there are students with the same
-                  preferences as yours
-                </p>
-                <button onClick={Assignstudents} className="btn click">
-                  Find Students
-                </button>
-              </div>
-            )}
 
           <section className="snap">
             <MoreInfo></MoreInfo>
@@ -217,12 +197,10 @@ function Home() {
           <section className="snap">
             <Extras></Extras>
           </section>
-      
+
           <Blogs></Blogs>
-        
         </div>
       )}
-      
 
       <Footer></Footer>
     </main>

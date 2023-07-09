@@ -2,14 +2,16 @@ import React from "react";
 import {useSelector,useDispatch} from 'react-redux'
 import { setprefs } from "../toolkit/slices";
 import {toast,ToastContainer} from 'react-toastify'
-function PopUp({hide,pref}) {
+function PopUp({hide,pref,showcat}) {
 
   const {message}=useSelector(store=>store.userInfo)
   const dispatch=useDispatch()
   const AddToCart=()=>{
     dispatch(setprefs(pref))
     toast.success(message)
+    
     hide(false)
+    showcat(true)
 
   }
     console.log(pref)

@@ -8,6 +8,7 @@ import {
 import Preloader from "../components/Preloader";
 import { setId, Setrefreshtoken, Setroles, Settoken } from "../toolkit/slices";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function MentorSignup() {
   // ! query selectors
@@ -26,9 +27,9 @@ function MentorSignup() {
       setlogin(false);
     }
   }
-
+const navigate=useNavigate()
   // !redirect function
-  const redirect=()=>window.location.href='/'
+  const redirect=()=>navigate('/dashboard',{replace:true})
 
 
 

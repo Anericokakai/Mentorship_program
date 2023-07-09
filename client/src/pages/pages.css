@@ -266,6 +266,7 @@ position: relative;
     right: 4em;
     padding: 10px;
     border-radius: 50%;
+    z-index: 4;
     width: 60px;
     height: 60px;
     display: grid;
@@ -298,6 +299,8 @@ position: relative;
     min-height: 300px;
     right: 3em;
     bottom: 1em;
+    box-shadow: 0px 13px 27px -5px rgba(50,50,93,0.25) , 0px 8px 16px -8px rgba(0,0,0,0.3) , 0px -6px 16px -6px rgba(0,0,0,0.025) ;
+  
 background-color: var(--bg);
     border-radius: 10px;
     padding: 1em;
@@ -305,6 +308,7 @@ background-color: var(--bg);
 }
 .showcart{
     transform: scaleX(1);
+    z-index: 4;
 }
 /* !end of prefences */
 
@@ -347,10 +351,16 @@ background-color: var(--bg);
     font-size: 27px;
 }
 
+.textbold{
+    font-size: 35px;
+}
 
 @media (max-width:640px) {
     .signupcontainer{
    grid-template-rows: 2fr 1fr;
+    }
+    .textbold{
+        font-size: 25px;
     }
     .four0four{
         width: 100%;

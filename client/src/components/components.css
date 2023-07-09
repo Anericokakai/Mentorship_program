@@ -313,6 +313,7 @@
     display: grid;
     place-content: center;
     margin-top: 2em;
+    min-height: 100vh;
  }
  .extrasImage img{
     width: 100%;
@@ -346,7 +347,9 @@
  }
  .image_container{
     position: relative;
-    height: 400px
+    height: 400px;
+    z-index: 1;
+   
  }
  .image_container img{
 width: 100%;

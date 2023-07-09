@@ -15,7 +15,7 @@ const reload=()=>{
    return window.location.reload()
 
 }
-
+const redirecttoDash=()=>navigate('/dashboard',{replace:true})
 const redirect=()=>       navigate('/signup',{replace:true})
   //   ! submit the prefernces
   const sendToBackEnd = () => {
@@ -39,7 +39,7 @@ const redirect=()=>       navigate('/signup',{replace:true})
         toast.error(data.data.message)
       }else{
         toast.success(data.data.message)
-    setTimeout(reload,5000)
+    setTimeout(redirecttoDash,5000)
       }
     }).catch(error=>{
       toast.error('failed to acces the database')

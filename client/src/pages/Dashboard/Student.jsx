@@ -72,21 +72,21 @@ function Student() {
   }, []);
   console.log(student);
 
-    // !assign mentors students
-    const Assignstudents = () => {
-      // !call the api to trigger matches
-  
-      giveStudentsMentors()
-        .then((data) => {
-          toast.success(data.data.message);
-          console.log(data);
-          setTimeout(refresh, 5000);
-        })
-        .catch((error) => {
-          console.log(error);
-          toast.error("failed to connect");
-        });
-    };
+  // !assign mentors students
+  const Assignstudents = () => {
+    // !call the api to trigger matches
+
+    giveStudentsMentors()
+      .then((data) => {
+        toast.success(data.data.message);
+        console.log(data);
+        setTimeout(refresh, 5000);
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("failed to connect");
+      });
+  };
 
   return (
     <main>
@@ -172,7 +172,7 @@ function Student() {
                   )
                 )}
 
-{student && student.role === "mentor" && student.hasMentor ? (
+                {student && student.role === "mentor" && student.student!==0 ? (
                   <div>
                     <h4>students that you will be mentoring</h4>
                     <RelatedComponet
@@ -181,19 +181,23 @@ function Student() {
                   </div>
                 ) : (
                   student &&
-                  student.role === "mentor" && (
-                    <div>
-                      <h3 className="center2">
-                        Looks like you have not been asigned any students ,
-                      </h3>
-                      <p className="center2">
-                        {" "}
-                        <button className="btn click" onClick={Assignstudents}>
-                          Find students 
-                        </button>
-                      </p>
-                    </div>
-                  )
+                  student.role === "mentor" &&
+                  student.student === 0 &&(
+                      <div>
+                        <h3 className="center2">
+                          Looks like you have not been asigned any students ,
+                        </h3>
+                        <p className="center2">
+                          {" "}
+                          <button
+                            className="btn click"
+                            onClick={Assignstudents}
+                          >
+                            Find students
+                          </button>
+                        </p>
+                      </div>
+                    )
                 )}
               </div>
             </div>

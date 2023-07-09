@@ -21,7 +21,7 @@ function Blogs() {
        {
         articles && articles.map(single=>(
             
- <Link className="link" to={'https://codefree-3b04a.web.app/login/lessonsHome'}>
+ <Link className="link" to={'https://codefree-3b04a.web.app/login/lessonsHome'} target='_blank'>
             <div className="article">
             <div className="image_container">
               <img src={single.Image} alt="" />
